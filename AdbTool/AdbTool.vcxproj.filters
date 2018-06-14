@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\AdbTool.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\AdbTool.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\folder.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\icon2.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\file.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AdbTool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdbToolDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdbInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WifiDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLogDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogDebug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogSelectDevice.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AllKeyboardDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="keycode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgFileManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdbFileManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogPackageManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StartActivityDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogProcessManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdbProcessManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InterruptManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AdbTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AdbToolDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AdbInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WifiDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLogDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogDebug.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogSelectDevice.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AllKeyboardDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgFileManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AdbFileManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogPackageManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StartActivityDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogProcessManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AdbProcessManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InterruptManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AdbTool.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

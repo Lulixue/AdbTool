@@ -96,6 +96,9 @@
     <ClInclude Include="InterruptManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DialogPhoneInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdbTool.cpp">
@@ -147,6 +150,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="InterruptManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogPhoneInfo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

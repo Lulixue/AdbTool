@@ -113,6 +113,7 @@
     <ClInclude Include="AllKeyboardDlg.h" />
     <ClInclude Include="DialogDebug.h" />
     <ClInclude Include="DialogPackageManager.h" />
+    <ClInclude Include="DialogPhoneInfo.h" />
     <ClInclude Include="DialogProcessManager.h" />
     <ClInclude Include="DialogSelectDevice.h" />
     <ClInclude Include="DlgFileManager.h" />
@@ -136,6 +137,7 @@
     <ClCompile Include="AllKeyboardDlg.cpp" />
     <ClCompile Include="DialogDebug.cpp" />
     <ClCompile Include="DialogPackageManager.cpp" />
+    <ClCompile Include="DialogPhoneInfo.cpp" />
     <ClCompile Include="DialogProcessManager.cpp" />
     <ClCompile Include="DialogSelectDevice.cpp" />
     <ClCompile Include="DlgFileManager.cpp" />

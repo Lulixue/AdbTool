@@ -1,0 +1,13 @@
+# Debug/Release Execute Files
+Debug/AdbTool.*
+Release/*
+
+# Debug/Release Build Files
+AdbTool/Debug/*
+AdbTool/Release/*
+ipch/*
+
+# Tmp Files
+*.sdf
+*.opensdf
+result.echo*

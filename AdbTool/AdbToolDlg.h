@@ -87,6 +87,7 @@ private:
 	CStatic m_staticResolution;
 	CStatic m_staticTpCoord;
 	CStatic m_staticCoordinate;
+	CMenu m_menuMain;
 
 	BOOL m_bSwipeFlag;
 	BOOL m_bMultiSwipeFlag;
@@ -138,4 +139,21 @@ protected:
 public:
 	afx_msg void OnBnClickedBtnProcessManager();
 	afx_msg void OnClose();
+	afx_msg void OnPhoneReconnect();
+	afx_msg void OnScreenScreenon();
+	afx_msg void OnScreenScreenoff();
+	afx_msg void OnVolumnVolumn();
+	afx_msg void OnVolumnVolumn32791();
+	afx_msg void OnOperationsReboot();
+	afx_msg void OnOperationsInput();
+	afx_msg void OnPhoneExit();
+	afx_msg void OnManagersFilemanager();
+	afx_msg void OnManagersPackagemanager();
+	afx_msg void OnManagersProcessmanager();
+	afx_msg void OnToolsInputlog();
+	afx_msg void OnToolsAdbconsole();
+	afx_msg void OnAboutAbout();
+	afx_msg void OnOperationsKill();
+	afx_msg void OnToolsDebuglogger();
+	afx_msg void OnPhonePhoneinfo();
 };

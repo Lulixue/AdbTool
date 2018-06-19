@@ -114,7 +114,7 @@ BOOL CInputLogDlg::OnInitDialog()
 		item.Format(TEXT("[%s]%s"), cit->second.Mid(0,1), cit->second);
 		m_cbLogcatFilterLevel.AddString(item);
 	}
-	m_editLogcatFilter.SetWindowTextW(TEXT("Focaltech"));
+	m_editLogcatFilter.SetWindowTextW(TEXT("Debug"));
 
 	int nCurrentLevel = ADB.GetPrintkLevel();
 	m_cbLogLevel.SetCurSel(nCurrentLevel);
@@ -122,7 +122,6 @@ BOOL CInputLogDlg::OnInitDialog()
 
 	((CButton*)GetDlgItem(IDC_CHECK_LABEL))->SetCheck(BST_CHECKED);
 
-	m_droidCurrentInt.name = TEXT("fts_ts");
 	RefreshInterrupt();
 	return TRUE;
 }

@@ -18,6 +18,7 @@
 #include "AllKeyboardDlg.h"
 #include "DialogPackageManager.h"
 #include "DialogProcessManager.h"
+#include "DialogPhoneInfo.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,6 +37,7 @@ CAllKeyboardDlg *g_pDlgAllKeyboard;
 CDlgFileManager *g_pDlgFileManager;
 CDialogPackageManager *g_pDlgPackageManager;
 CDialogProcessManager *g_pDlgProcessManager;
+CDialogPhoneInfo *g_pDlgPhoneInfo;
 HWND g_hMainWnd;
 
 BOOL g_bDisableDeviceChange = FALSE;
@@ -75,7 +77,7 @@ void CAboutDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
     CDialogEx::OnShowWindow(bShow, nStatus);
 
-    // TODO: 在此处添加消息处理程序代码
+    
     SetDlgItemTextW(IDC_STATIC_VERSION, g_strToolDate.GetString());
 	SetDlgItemTextW(IDC_STATIC_COPYRIGHT, g_strCopyRight.GetString());
 }
@@ -115,6 +117,7 @@ CAdbToolDlg::~CAdbToolDlg()
 	DestroyToolDialog(g_pDlgAllKeyboard);
 	DestroyToolDialog(g_pDlgPackageManager);
 	DestroyToolDialog(g_pDlgProcessManager);
+	DestroyToolDialog(g_pDlgPhoneInfo);
 }
 
 void CAdbToolDlg::DoDataExchange(CDataExchange* pDX)
@@ -177,6 +180,23 @@ BEGIN_MESSAGE_MAP(CAdbToolDlg, CDialogEx)
 	ON_MESSAGE(UMSG_FILE_MANAGER_CLOSE, &CAdbToolDlg::OnUmsgFileManagerClose)
 	ON_BN_CLICKED(IDC_BTN_PROCESS_MANAGER, &CAdbToolDlg::OnBnClickedBtnProcessManager)
 	ON_WM_CLOSE()
+	ON_COMMAND(ID_PHONE_RECONNECT, &CAdbToolDlg::OnPhoneReconnect)
+	ON_COMMAND(ID_SCREEN_SCREENON, &CAdbToolDlg::OnScreenScreenon)
+	ON_COMMAND(ID_SCREEN_SCREENOFF, &CAdbToolDlg::OnScreenScreenoff)
+	ON_COMMAND(ID_VOLUMN_VOLUMN, &CAdbToolDlg::OnVolumnVolumn)
+	ON_COMMAND(ID_VOLUMN_VOLUMN32791, &CAdbToolDlg::OnVolumnVolumn32791)
+	ON_COMMAND(ID_OPERATIONS_REBOOT, &CAdbToolDlg::OnOperationsReboot)
+	ON_COMMAND(ID_OPERATIONS_INPUT, &CAdbToolDlg::OnOperationsInput)
+	ON_COMMAND(ID_PHONE_EXIT, &CAdbToolDlg::OnPhoneExit)
+	ON_COMMAND(ID_MANAGERS_FILEMANAGER, &CAdbToolDlg::OnManagersFilemanager)
+	ON_COMMAND(ID_MANAGERS_PACKAGEMANAGER, &CAdbToolDlg::OnManagersPackagemanager)
+	ON_COMMAND(ID_MANAGERS_PROCESSMANAGER, &CAdbToolDlg::OnManagersProcessmanager)
+	ON_COMMAND(ID_TOOLS_INPUTLOG, &CAdbToolDlg::OnToolsInputlog)
+	ON_COMMAND(ID_TOOLS_ADBCONSOLE, &CAdbToolDlg::OnToolsAdbconsole)
+	ON_COMMAND(ID_ABOUT_ABOUT, &CAdbToolDlg::OnAboutAbout)
+	ON_COMMAND(ID_OPERATIONS_KILL, &CAdbToolDlg::OnOperationsKill)
+	ON_COMMAND(ID_TOOLS_DEBUGLOGGER, &CAdbToolDlg::OnToolsDebuglogger)
+	ON_COMMAND(ID_PHONE_PHONEINFO, &CAdbToolDlg::OnPhonePhoneinfo)
 END_MESSAGE_MAP()
 
 
@@ -263,17 +283,17 @@ UINT WINAPI ThreadUpdateStatus(LPVOID lP)
 
 	if (ADB.IsConnected())
 	{
-		strTitle = TEXT("Android设备: ");
+		strTitle = TEXT("Android Dev: ");
 		strTitle += ADB.GetModel();
 		strTitle.AppendFormat(TEXT("(%s)"), ADB.GetSerialNo());
-		strTitle += TEXT(" 已连接");
+		strTitle += TEXT(" Connected");
 		if (ADB.IsRooted()) {
 			strTitle += TEXT("(Root)");
 		}
 	}
 	else
 	{
-		strTitle = TEXT("设备连接断开,请连接Android设备!");
+		strTitle = TEXT("Disconnected, Please connect Android device!");
 	}
 
 	g_pToolDlg->SetWindowText(strTitle);
@@ -343,7 +363,7 @@ void CAdbToolDlg::SetCompileDateTime()
     g_strToolDate = szDateTime;
 
 
-	sprintf_s(szTmpDate, "FocalTech Copyright(C) %d", iYear);
+	sprintf_s(szTmpDate, "Lulixue Copyright(C) %d", iYear);
 	g_strCopyRight = szTmpDate;
 
     //g_strToolDate = TEXT("AdbTool, V1.0");
@@ -351,7 +371,7 @@ void CAdbToolDlg::SetCompileDateTime()
 
 void CAdbToolDlg::UpdateStatus()
 {
-	this->SetWindowTextW(TEXT("设备连接中..."));
+	this->SetWindowTextW(TEXT("Connecting Device..."));
 	_beginthreadex(NULL, 0, ThreadUpdateStatus, NULL, 0, NULL);
 	
 }
@@ -366,9 +386,7 @@ BOOL CAdbToolDlg::OnInitDialog()
 	// IDM_ABOUTBOX 必须在系统命令范围内。
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
-	//for (int i = 710; i < 770; i++) {
-	//	_CrtSetBreakAlloc(i); 
-	//}
+
 	CMenu* pSysMenu = GetSystemMenu(FALSE);
 	if (pSysMenu != NULL)
 	{
@@ -384,6 +402,7 @@ BOOL CAdbToolDlg::OnInitDialog()
 	}
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
+
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
@@ -425,6 +444,8 @@ BOOL CAdbToolDlg::OnInitDialog()
 	}
     SetCompileDateTime();
 
+	m_menuMain.LoadMenuW(IDR_MENU_MAIN);
+	SetMenu(&m_menuMain);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -478,7 +499,7 @@ void CAdbToolDlg::InitResolution()
 		if (m_pntResolution.x > m_pntResolution.y) {
 			int tmp;
 			CString strInfo;
-			strInfo.Format(TEXT("分辨率是%d*%d (x*y)吗?"), m_pntResolution.y, m_pntResolution.x);
+			strInfo.Format(TEXT("Resolution is %d*%d (x*y)?"), m_pntResolution.y, m_pntResolution.x);
 			
 			if (bShowed || (IDYES == MessageBox(strInfo, TEXT("Warning"), MB_ICONQUESTION | MB_YESNO))) {
 				tmp = m_pntResolution.y;
@@ -675,28 +696,28 @@ void CAdbToolDlg::OnBnClickedBtnVolumnplus()
 
 void CAdbToolDlg::OnBnClickedBtnLeft()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_LEFT);
 }
 
 
 void CAdbToolDlg::OnBnClickedBtnReboot()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.Reboot();
 }
 
 
 void CAdbToolDlg::OnBnClickedBtnDown()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_DOWN);
 }
 
 
 void CAdbToolDlg::OnBnClickedBtnBack()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_BACK);
 	UpdateScreen(800);
 }
@@ -719,7 +740,7 @@ void CAdbToolDlg::OnBnClickedBtnMenu()
 
 void CAdbToolDlg::OnBnClickedBtnVolumnminus()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_VOL_MINUS);
 }
 
@@ -750,7 +771,7 @@ void CAdbToolDlg::OnBnClickedBtnSendtext()
 
 void CAdbToolDlg::OnBnClickedBtnRight()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_RIGHT);
 }
 
@@ -828,7 +849,7 @@ void CAdbToolDlg::UpdateScreen(int nSleepMs)
 
 void CAdbToolDlg::OnStnDblclickStaticScreen()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 
 	UpdateScreen(0);
 	
@@ -898,7 +919,7 @@ void CAdbToolDlg::OnBnClickedBtnMtkLogger()
 
 void CAdbToolDlg::OnBnClickedBtnAutoUnlock()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.StartActivity(TEXT("com.h3c.ServiceAuto/.AutoUnlock"));
 }
 
@@ -1041,7 +1062,6 @@ void CAdbToolDlg::SendSwipe()
 
 void CAdbToolDlg::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if (!ADB.IsConnected()) 
 	{
 		CDialogEx::OnRButtonDown(nFlags, point);
@@ -1100,7 +1120,7 @@ void CAdbToolDlg::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CAdbToolDlg::OnBnClickedBtnSetResolution()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	if (m_editXRes.GetStyle() & ES_READONLY)
 	{
 		m_editXRes.SetReadOnly(FALSE);
@@ -1127,7 +1147,7 @@ void CAdbToolDlg::OnBnClickedBtnSetResolution()
 
 void CAdbToolDlg::OnBnClickedBtnBackspace()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	ADB.SendKeyEvent(KEY_DELETE);
 }
 
@@ -1138,7 +1158,7 @@ void CAdbToolDlg::OnSize(UINT nType, int cx, int cy)
 	CRect rcNewWindows;
 	GetWindowRect(&rcNewWindows);
 
-	// TODO: 在此处添加消息处理程序代码
+	
 
 	if (IsWindow(m_staticScreen.GetSafeHwnd()))
 	{
@@ -1176,7 +1196,7 @@ void CAdbToolDlg::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CDialogEx::OnSizing(fwSide, pRect);
 
-	// TODO: 在此处添加消息处理程序代码
+	
 
 }
 
@@ -1227,7 +1247,7 @@ LRESULT CAdbToolDlg::OnReconnectDevice(WPARAM wParam, LPARAM lParam)
 
 void CAdbToolDlg::OnBnClickedBtnIicOperator()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	
 	//if (g_pDlgOperator != NULL) 
 	//{
@@ -1243,7 +1263,7 @@ void CAdbToolDlg::OnBnClickedBtnIicOperator()
 
 void CAdbToolDlg::OnBnClickedBtnReconnect()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	PostMessage(UWM_RECONNECT_DEVICE, 0, 0);
 }
 
@@ -1264,7 +1284,7 @@ void CAdbToolDlg::OnBnClickedBtnInstallApk()
 void CAdbToolDlg::OnBnClickedBtnWifi()
 {
 	if (!ADB.IsUsbConnected()) {
-		UINT bRet = MessageBox(TEXT("请先将设备连接USB"), TEXT("Info"), 
+		UINT bRet = MessageBox(TEXT("Please connect device by USB first"), TEXT("Info"), 
 						MB_ICONINFORMATION | MB_OKCANCEL);
 		if (bRet != IDOK) {
 			return;
@@ -1300,7 +1320,7 @@ void ThreadScreenOnOff(LPVOID lP)
 
 void CAdbToolDlg::OnBnClickedBtnScreenOff()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	g_bScreenOn = FALSE;
 	_beginthread(ThreadScreenOnOff, 0, 0);
 }
@@ -1308,7 +1328,7 @@ void CAdbToolDlg::OnBnClickedBtnScreenOff()
 
 void CAdbToolDlg::OnBnClickedBtnScreenOn()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	g_bScreenOn = TRUE;
 	_beginthread(ThreadScreenOnOff, 0, 0);
 }
@@ -1329,7 +1349,7 @@ void CAdbToolDlg::OnDialogDebug()
 
 void CAdbToolDlg::OnBnClickedBtnInputLog()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	DestroyToolDialog(g_pDlgInputLog);
 	g_pDlgInputLog = new CInputLogDlg();
 	g_pDlgInputLog->Create(IDD_DLG_INPUT_LOG,  GetDesktopWindow());
@@ -1397,7 +1417,7 @@ void ThreadReadFtDbg(LPVOID lP)
 
 void CAdbToolDlg::OnBnClickedChkLoadScreenshot()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 	if (((CButton*)GetDlgItem(IDC_CHK_LOAD_SCREENSHOT))->GetCheck() == BST_CHECKED) {
 		m_bLoadScreenShot = TRUE;
 		UpdateScreen(0);
@@ -1413,7 +1433,7 @@ void CAdbToolDlg::OnBnClickedChkLoadScreenshot()
 
 void CAdbToolDlg::OnBnClickedBtnKillAdb()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	
 
 	CAdbInterface::StopAllThread();
 }
@@ -1519,4 +1539,140 @@ void CAdbToolDlg::OnClose()
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	//CAdbInterface::StopAllSubThreads();
 	CDialogEx::OnClose();
+}
+
+
+void CAdbToolDlg::OnPhoneReconnect()
+{
+	PostMessage(UWM_RECONNECT_DEVICE, 0, 0);
+}
+
+void CAdbToolDlg::OnScreenScreenon()
+{
+	g_bScreenOn = TRUE;
+	_beginthread(ThreadScreenOnOff, 0, 0);
+}
+
+
+void CAdbToolDlg::OnScreenScreenoff()
+{
+	g_bScreenOn = FALSE;
+	_beginthread(ThreadScreenOnOff, 0, 0);
+}
+
+
+void CAdbToolDlg::OnVolumnVolumn()
+{
+	ADB.SendKeyEvent(KEY_VOL_PLUS);
+}
+
+
+void CAdbToolDlg::OnVolumnVolumn32791()
+{
+	ADB.SendKeyEvent(KEY_VOL_MINUS);
+}
+
+
+void CAdbToolDlg::OnOperationsReboot()
+{
+	ADB.Reboot();
+}
+
+
+void CAdbToolDlg::OnOperationsInput()
+{
+	if ((g_pDlgAllKeyboard != NULL) && g_pDlgAllKeyboard->IsWindowVisible())
+	{
+		g_pDlgAllKeyboard->ShowWindow(SW_NORMAL);
+	}
+	else {
+		g_pDlgAllKeyboard = new CAllKeyboardDlg();
+		g_pDlgAllKeyboard->Create(IDD_DIALOG_ALL_KEYBOARD,  GetDesktopWindow());
+		g_pDlgAllKeyboard->ShowWindow(SW_SHOWNORMAL);
+	}
+}
+
+
+void CAdbToolDlg::OnPhoneExit()
+{
+	PostMessage(WM_CLOSE);
+}
+
+
+void CAdbToolDlg::OnManagersFilemanager()
+{
+
+	DestroyToolDialog(g_pDlgFileManager);
+	g_pDlgFileManager = new CDlgFileManager();
+	g_pDlgFileManager->Create(IDD_DLG_FILE_MANAGER, GetDesktopWindow());
+	g_pDlgFileManager->ShowWindow(SW_SHOWNORMAL);
+}
+
+
+void CAdbToolDlg::OnManagersPackagemanager()
+{
+	DestroyToolDialog(g_pDlgPackageManager);
+	g_pDlgPackageManager = new CDialogPackageManager();
+	g_pDlgPackageManager->Create(IDD_DLG_PACKAGE_MANAGER,  GetDesktopWindow());
+	g_pDlgPackageManager->ShowWindow(SW_SHOWNORMAL);
+	return;
+}
+
+
+void CAdbToolDlg::OnManagersProcessmanager()
+{
+
+	DestroyToolDialog(g_pDlgProcessManager);
+	g_pDlgProcessManager = new CDialogProcessManager();
+	g_pDlgProcessManager->Create(IDD_DIALOG_PROCESS_MANAGER, GetDesktopWindow());
+	g_pDlgProcessManager->ShowWindow(SW_SHOWNORMAL);
+}
+
+
+void CAdbToolDlg::OnToolsInputlog()
+{
+
+	DestroyToolDialog(g_pDlgInputLog);
+	g_pDlgInputLog = new CInputLogDlg();
+	g_pDlgInputLog->Create(IDD_DLG_INPUT_LOG,  GetDesktopWindow());
+	g_pDlgInputLog->ShowWindow(SW_SHOWNORMAL);
+}
+
+
+void CAdbToolDlg::OnToolsAdbconsole()
+{
+	PARAM_T para;
+	para.strCmd = TEXT("adb version");
+	para.nType = CMD_DIR_ADB;
+
+
+	CAdbInterface::CreateCmdWindow(&para);
+}
+
+
+void CAdbToolDlg::OnAboutAbout()
+{
+	CAboutDlg aboutDlg;
+	aboutDlg.DoModal();
+}
+
+
+void CAdbToolDlg::OnOperationsKill()
+{
+	CAdbInterface::StopAllThread();
+}
+
+
+void CAdbToolDlg::OnToolsDebuglogger()
+{
+	OnDialogDebug();
+}
+
+
+void CAdbToolDlg::OnPhonePhoneinfo()
+{
+	DestroyToolDialog(g_pDlgPhoneInfo);
+	g_pDlgPhoneInfo = new CDialogPhoneInfo();
+	g_pDlgPhoneInfo->Create(IDD_DIALOG_PHONE_INFO,  GetDesktopWindow());
+	g_pDlgPhoneInfo->ShowWindow(SW_SHOWNORMAL);
 }

@@ -1217,21 +1217,12 @@ LRESULT CAdbToolDlg::OnProcAvailable(WPARAM wParam, LPARAM lParam)
 	BOOL bRet = IPROC.OpenProc();
 
 	if (bShowWindow) {
-		if (!bRet) 
-		{
-			MessageBox(TEXT("更改权限失败!"));
-		}
-		else {
-			CString strInfo(TEXT("更改权限成功!                            \n\n"));
+		
+			CString strInfo;
 			strInfo += IPROC.GetAvailableI2CInterface();
 			MessageBox(strInfo);
-		}
 	}
 	
-	/*g_pDlgOperator = new COperatorDlg();
-	g_pDlgOperator->Create(IDD_DLG_IIC_OPERATOR,this);
-	g_pDlgOperator->ShowWindow(SW_SHOWDEFAULT);
-*/
 	GetDlgItem(IDC_BTN_IIC_OPERATOR)->EnableWindow(TRUE);
 	return 0;
 }

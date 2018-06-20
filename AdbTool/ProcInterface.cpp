@@ -44,90 +44,9 @@ CProcInterface::~CProcInterface(void)
 
 CString CProcInterface::GetAvailableI2CInterface()
 {
-	CString strInfo;
 	PARAM_T para;
-	para.strCmd = TEXT("adb shell ls /proc/ft*");
-	para.nType = CMD_INFINITE;
 
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	strInfo.Append(TEXT("I2C PROC: "));
-	if (!para.bRet || (para.strReturn.Find(TEXT("No such")) != SYMBOL_NOT_FOUND) )
-	{
-		strInfo.Append(TEXT("Unavailable\n"));
-	}
-	else 
-	{
-		para.strReturn = ADB.CleanString(para.strReturn);
-		strInfo.Append(para.strReturn);
-		strInfo.Append(TEXT("\n"));
-	}
-
-
-	BOOL bMtk = FALSE;
-	//para.strCmd.Format(TEXT("adb shell \"getprop | grep mtk\""));
-	para.strCmd = TEXT("adb shell ls /dev/ft_rw_iic_drv");
-	para.nType = CMD_INFINITE;
-
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	if (para.strReturn.Find(TEXT("No such")) != -1) 
-	{
-		bMtk = FALSE;
-	}
-	else 
-	{
-		bMtk = TRUE;
-	}
-
-	//CString strSingle = para.strReturn;
-	//int nSize = strSingle.GetLength();
-	//int nPos;
-	//for (int i = 0; i < nSize; i++)
-	//{
-	//	nPos = strSingle.Find(TEXT('\n'), i);
-	//	if (nPos == -1) 
-	//	{
-	//		CString strAttr = strSingle.Mid(i);
-	//		if ( (strAttr.Find(TEXT("Hardware")) != -1) && (strAttr.Find(TEXT(": MT")) != -1))
-	//		{
-	//			bMtk = TRUE;
-	//			break;
-	//		}
-	//		break;
-	//	}
-	//	else if (nPos < nSize)
-	//	{
-	//		CString strAttr = strSingle.Mid(i, nPos-i);
-	//		if ( (strAttr.Find(TEXT("Hardware")) != -1) && (strAttr.Find(TEXT(": MT")) != -1))
-	//		{
-	//			bMtk = TRUE;
-	//			break;
-	//		}
-	//		i = nPos;
-	//	}
-	//	else 
-	//	{
-	//		break;
-	//	}
-	//}
-
-
-	para.strCmd = TEXT("adb shell ls /dev/i2c-*");
-	para.nType = CMD_INFINITE;
-
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	if (!para.bRet || (para.strReturn.Find(TEXT("No such")) != SYMBOL_NOT_FOUND) )
-	{
-
-		strInfo.Append(TEXT("I2C Standard: Unavailable!\n"));
-		strInfo.Append(TEXT("I2C FTS: Unavailable!\n"));
-		return strInfo;
-	}
-
-	CString strBuses;
-	int index = -1;
+	CString strBuses(TEXT("I2C Devices: \n\n"));
 	for (int i = 0; i < 10; i++) 
 	{
 		para.strCmd.Format(TEXT("adb shell cat /sys/bus/i2c/devices/i2c-%d/%d*/name"), i, i);
@@ -135,64 +54,20 @@ CString CProcInterface::GetAvailableI2CInterface()
 
 		para.bRet = CAdbInterface::CreateAdbProcess(&para);
 
-		para.strReturn = ADB.CleanString(para.strReturn);
 		if (para.strReturn.GetLength() > 2) {
 			if (para.strReturn.Find(TEXT("No such")) != -1) 
 			{
 				continue;
 			}
-			strBuses.AppendFormat(TEXT("i2c-%d: %s\n"), i, para.strReturn);
-			if ( (para.strReturn.GetAt(0) == TEXT('f')) && 
-				(para.strReturn.GetAt(1) == TEXT('t')) )
-			{
-				index = i;
+			para.strReturn.Replace(TEXT('\r'), TEXT('\n'));
+			int pos = para.strReturn.Find(TEXT('\n'));
 
-				strInfo.Append(TEXT("I2C Standard: "));
-				strInfo.AppendFormat(TEXT("/dev/i2c-%d (%s)\n"), i, para.strReturn);
+			strBuses.AppendFormat(TEXT("i2c-%d: %s\n"), i, para.strReturn.Mid(0, pos));
 				
-				break;
-			}
 		}
 	}
 	
-	
-	if (bMtk) 
-	{
-		strInfo.Append(TEXT("I2C FTS: /dev/ft_rw_iic_drv\n"));
-	}
-	else 
-	{
-		strInfo.Append(TEXT("I2C FTS: Unavailable\n"));
-	}
-	if (index == -1)
-	{
-		para.strCmd.Format(TEXT("adb shell ls /sys/bus/i2c/devices/*-0038"));
-		para.nType = CMD_INFINITE;
-
-		para.bRet = CAdbInterface::CreateAdbProcess(&para);
-		para.strReturn = ADB.CleanString(para.strReturn);
-		if (para.strReturn.Find(TEXT("No such")) != -1) 
-		{
-			strInfo.Append(TEXT("I2C Standard: TP driver not added!\n"));
-
-		}
-		else 
-		{
-			if (para.strReturn.GetLength() > 6) 
-			{
-				index = _wtoi(para.strReturn.Mid(para.strReturn.GetLength()-1-5, 1));
-				strInfo.AppendFormat(TEXT("I2C Standard: /dev/i2c-%d\n"), index);
-
-			}
-			else {
-				strInfo.Append(TEXT("I2C Standard: Unknown(Choose below)\n"));
-				strInfo.Append(TEXT("\nI2C设备列表:\n"));
-				strInfo.Append(strBuses);
-			}
-				
-		}
-	} 
-	return strInfo;
+	return strBuses;
 }
 
 BOOL CProcInterface::OpenProc() 
@@ -200,18 +75,7 @@ BOOL CProcInterface::OpenProc()
 	BOOL bSuccess = FALSE;
 	PARAM_T para;
 
-	para.strCmd = TEXT("adb shell \"getprop | grep brand\"");
-	para.nType = CMD_INFINITE;
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	if (para.strReturn.Find(TEXT("vivo")) != SYMBOL_NOT_FOUND)
-	{
-		para.strCmd = TEXT("adbvivo vivoroot");
-	}
-	else 
-	{
-		para.strCmd = TEXT("adb root");
-	}
+	para.strCmd = TEXT("adb root");
 
 	para.nType = CMD_INFINITE;
 	para.bRet = CAdbInterface::CreateAdbProcess(&para);
@@ -235,23 +99,6 @@ BOOL CProcInterface::OpenProc()
 		bSuccess = TRUE;
 	}
 
-	para.strCmd = TEXT("adb shell chmod 777 /proc/ft*");
-	para.nType = CMD_INFINITE;
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	if (para.strReturn.GetLength() < 2) {
-		bSuccess = TRUE;
-	}
-	
-
-	para.strCmd = TEXT("adb shell chmod 777 /dev/ft_rw_iic_drv");
-	para.nType = CMD_INFINITE;
-	para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-	if (para.strReturn.GetLength() < 2) {
-		bSuccess = TRUE;
-	}
-
 	if (!bSuccess) {
 
 		para.strCmd = TEXT("adb shell su -c \"setenforce 0\"");
@@ -266,52 +113,9 @@ BOOL CProcInterface::OpenProc()
 			bSuccess = TRUE;
 		}
 
-		para.strCmd = TEXT("adb shell su -c \"chmod 777 /proc/ft*\"");
-		para.nType = CMD_INFINITE;
-		para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-		if (para.strReturn.GetLength() < 2) {
-			bSuccess = TRUE;
-		}
-
-
-		para.strCmd = TEXT("adb shell su -c \"chmod 777 /dev/ft_rw_iic_drv\"");
-		para.nType = CMD_INFINITE;
-		para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-		if (para.strReturn.GetLength() < 2) {
-			bSuccess = TRUE;
-		}
 	}
-	//para.strCmd = TEXT("adb shell ls -l /proc/ft*");
-	//para.nType = CMD_INFINITE;
-	//para.bRet = CAdbInterface::CreateAdbProcess(&para);
 
-	//CString strAttrs = CAdbInterface::CleanString(para.strReturn);
-	//if (strAttrs.GetLength() < 9)
-	//{
-	//	return FALSE;
-	//}
-
-	//if ((strAttrs.GetAt(7) == TEXT('r')) && 
-	//	(strAttrs.GetAt(8) == TEXT('w')))
-	{
-
-		//para.strCmd = TEXT("adb install \"");
-		//para.strCmd += APK_PATH;
-		//para.strCmd += TEXT("\"");
-		//para.nType = CMD_INFINITE;
-		//para.bRet = CAdbInterface::CreateAdbProcess(&para);
-
-		//para.strCmd = TEXT("adb shell am start -n com.fts/.MainActivity");
-		//para.nType = CMD_INFINITE;
-		//para.bRet = CAdbInterface::CreateAdbProcess(&para);
-		//
-		
-
-		return bSuccess;
-	}
-	//return FALSE;
+	return bSuccess;
 }
 
 

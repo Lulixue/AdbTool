@@ -90,7 +90,10 @@ BOOL CInputLogDlg::OnInitDialog()
 		m_strAllAttrs += TEXT("\n");
 	}
 
+	m_strAllAttrs.Replace(TEXT("\r"), TEXT("\n"));
 	m_strAllAttrs.Replace(TEXT("\n"), TEXT("\r\n"));
+	m_strAllAttrs.Replace(TEXT("\r\n\r\n"), TEXT("\r\n"));
+
 	
 	m_cbInputDevices.SetCurSel(0);
 
@@ -317,7 +320,9 @@ void CInputLogDlg::OnCbnSelchangeComboInput()
 					strText += *cit;
 					strText += TEXT("\n");
 				}
+				strText.Replace(TEXT("\r"), TEXT("\n"));
 				strText.Replace(TEXT("\n"), TEXT("\r\n"));
+				strText.Replace(TEXT("\r\n\r\n"), TEXT("\r\n"));
 
 				m_richInputAttrs.SetWindowTextW(strText);
 				return;

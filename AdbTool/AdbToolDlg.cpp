@@ -293,7 +293,7 @@ UINT WINAPI ThreadUpdateStatus(LPVOID lP)
 	}
 	else
 	{
-		strTitle = TEXT("Disconnected, Please connect Android device!");
+		strTitle = TEXT("Disconnected, Please Connect Android Device!");
 	}
 
 	g_pToolDlg->SetWindowText(strTitle);

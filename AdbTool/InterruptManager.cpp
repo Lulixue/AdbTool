@@ -63,12 +63,18 @@ void CInterruptManager::ParseIntLine(const CString intline)
 		return;
 	}
 	//////////////////////////////////////////////////////////////////////////
+	// ----6.0----
+	// 560:          0   mt-eint 176  pmic-eint
+	// IPI0:     11447       Rescheduling interrupts
+	// Err:          0
+	//
 	// 637:          0          0          0          0  smp2p_gpio   0  modem
-	// System interrupt:
+	//
+	// ----System interrupts---
 	// IPI0
 	// IPI0:   1100952    1278965     603281     557013       Rescheduling interrupts
 	//
-	// 5.0:
+	// -----5.0-------------
 	// 132:        0       GIC  PH
 	// IPI0:       0        100         67         49         30          3
 	//			   2          2  CPU wakeup interrupts
@@ -117,14 +123,17 @@ void CInterruptManager::ParseIntLine(const CString intline)
 				}
 			}
 			break;
-		case DROID_INT_NO:
+		case DROID_INT_GPIO:
 			{
 				int tmp_no = _wtoi(vecPieces[index]);
 				/* 5.0 */
-				if (tmp_no != droidint.no) 
-				{
-					droidint.name = vecPieces[index];
+				if (ADB.OsLower(ANDROID_LOLLIPOP_MR1)) {
+					if (tmp_no != droidint.no) 
+					{
+						droidint.name = vecPieces[index];
+					}
 				}
+				droidint.gpio = tmp_no;
 			}
 			break;
 		case DROID_INT_TYPE:

@@ -17,7 +17,7 @@ enum ANDROID_INT_ORDER {
 	DROID_INT_NO_COLON = 0,
 	DROID_INT_CPUS,
 	DROID_INT_TYPE,
-	DROID_INT_NO,
+	DROID_INT_GPIO,
 	DROID_INT_NAME,
 };
 
@@ -27,7 +27,8 @@ public:
 	CAndroidIntrrupt() : no(0),system(FALSE) {}
 
 public:
-	int no;
+	int no; /* irq no. */
+	int gpio; /* gpio no. */
 	/* cpu,triggered */
 	map<int, long long> cpu_triggered;
 	CString name;

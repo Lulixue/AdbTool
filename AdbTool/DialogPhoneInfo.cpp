@@ -42,6 +42,7 @@ END_MESSAGE_MAP()
 void CDialogPhoneInfo::GetPhoneInfo(int type)
 {
 	PARAM_T para;
+	CString strText;
 	
 	para.nType = CMD_INFINITE | CMD_READ_BACK_FILE;
 
@@ -59,13 +60,26 @@ void CDialogPhoneInfo::GetPhoneInfo(int type)
 		para.strCmd = TEXT("adb shell cat /proc/cmdline");
 		break;
 	case AINFO_PROP:
-	default:
 		para.strCmd = TEXT("adb shell getprop");
+		break;
+	case AINFO_KEY_INFO:
+		{
+			strText.AppendFormat(TEXT("SerialNo: %s\n"), GetProp(GETPROP_SERIALNO));
+			strText.AppendFormat(TEXT("Model: %s\n"), GetProp(GETPROP_MODEL));
+			strText.AppendFormat(TEXT("Android: %s\n"), GetProp(GETPROP_ANDROID_RELEASE));
+		}
+		para.nType |= CMD_READ_BACK_FILE;
+		para.strCmd = TEXT("adb shell cat /proc/version");
+	default:
 		break;
 	}
 	CAdbInterface::CreateAdbProcess(&para);
+	strText.Append(para.strReturn);
+	strText.Replace(TEXT("\r"), TEXT("\n"));
+	strText.Replace(TEXT("\n"), TEXT("\r\n"));
+	strText.Replace(TEXT("\r\n\r\n"), TEXT("\r\n"));
 
-	m_editPhoneInfo.SetWindowTextW(para.strReturn);
+	m_editPhoneInfo.SetWindowTextW(strText);
 }
 
 void CDialogPhoneInfo::OnShowWindow(BOOL bShow, UINT nStatus)
@@ -89,17 +103,74 @@ void CDialogPhoneInfo::OnCbnSelchangeComboInfoTypes()
 	GetPhoneInfo(m_cbInfoTypes.GetCurSel());
 }
 
+void CDialogPhoneInfo::InitAndroidProps()
+{
+	PARAM_T para;
+	CString strText;
+
+	para.nType = CMD_INFINITE | CMD_READ_BACK_FILE;
+	para.strCmd = TEXT("adb shell getprop");
+	CAdbInterface::CreateAdbProcess(&para);
+
+	m_mapAndroidProps.clear();
+	CString strKey, strValue;
+	CString strItem;
+
+	int len = para.strReturn.GetLength();
+	int begin, end;
+	TCHAR single;
+	for (int i = 0; i < len; i++)
+	{
+		single = para.strReturn.GetAt(i);
+		if (single == TEXT('\r') ||
+			single == TEXT('\n'))
+		{
+			if (strItem.IsEmpty()) {
+				continue;
+			}
+			begin = strItem.Find(TEXT('['));
+			end = strItem.Find(TEXT(']'));
+			strKey = strItem.Mid(begin+1, end-begin-1);
+
+			begin = strItem.ReverseFind(TEXT('['));
+			end = strItem.ReverseFind(TEXT(']'));
+			strValue = strItem.Mid(begin+1, end-begin-1);
+
+			if (!strKey.IsEmpty() && !strValue.IsEmpty())
+			{
+				m_mapAndroidProps[strKey] = strValue;
+			}
+			strItem.Empty();
+			continue;
+		} else {
+			strItem.AppendChar(single);
+		}
+		
+	}
+
+}
+
+CString CDialogPhoneInfo::GetProp(const CString key) const
+{
+	map<CString, CString>::const_iterator cit = m_mapAndroidProps.find(key);
+	if (cit != m_mapAndroidProps.end()) {
+		return cit->second;
+	}
+	return TEXT("");
+}
+
 BOOL CDialogPhoneInfo::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
+	m_cbInfoTypes.AddString(ANDROID_INFO_KEY_INFO);
 	m_cbInfoTypes.AddString(ANDROID_INFO_PROP);
 	m_cbInfoTypes.AddString(ANDROID_INFO_CPUS);
 	m_cbInfoTypes.AddString(ANDROID_INFO_MEM);
 	m_cbInfoTypes.AddString(ANDROID_INFO_VERSION);
 	m_cbInfoTypes.AddString(ANDROID_INFO_CMDLINE);
 	m_cbInfoTypes.SetCurSel(0);
-
+	InitAndroidProps();
 	return TRUE;
 }
 

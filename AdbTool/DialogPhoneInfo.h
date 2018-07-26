@@ -14,9 +14,11 @@ using std::map;
 #define GETPROP_ANDROID_RELEASE	TEXT("ro.build.version.release")
 #define GETPROP_ANDROID_SDK		TEXT("ro.build.version.sdk")
 #define GETPROP_PRODUCT			TEXT("ro.build.product")
+#define GETPROP_BUILD_TYPE		TEXT("ro.build.type")
 #define GETPROP_MODEL			TEXT("ro.product.model")
 #define GETPROP_SERIALNO		TEXT("ro.boot.serialno")
 #define GETPROP_SELINUX			TEXT("ro.boot.selinux")
+
 
 enum {
 	AINFO_KEY_INFO = 0,
@@ -54,7 +56,10 @@ public:
 	afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
 
 private:
+	CString GetLinuxVersion(const CString version) const;
+	CString GetBuildDate(const CString version) const;
 	CString GetProp(const CString key) const;
 	void InitAndroidProps();
 	map<CString, CString> m_mapAndroidProps;
+	CString m_strGetPropLine;
 };

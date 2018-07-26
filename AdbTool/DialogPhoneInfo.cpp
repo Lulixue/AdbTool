@@ -6,6 +6,7 @@
 #include "DialogPhoneInfo.h"
 #include "afxdialogex.h"
 #include "AdbInterface.h"
+#include <regex>
 
 
 // CDialogPhoneInfo ¶Ô»°¿ò
@@ -66,20 +67,57 @@ void CDialogPhoneInfo::GetPhoneInfo(int type)
 		{
 			strText.AppendFormat(TEXT("SerialNo: %s\n"), GetProp(GETPROP_SERIALNO));
 			strText.AppendFormat(TEXT("Model: %s\n"), GetProp(GETPROP_MODEL));
-			strText.AppendFormat(TEXT("Android: %s\n"), GetProp(GETPROP_ANDROID_RELEASE));
+			strText.AppendFormat(TEXT("Product: %s\n"), GetProp(GETPROP_PRODUCT));
+			strText.AppendFormat(TEXT("SElinux: %s\n"), GetProp(GETPROP_SELINUX));
+			strText.AppendFormat(TEXT("Android: %s(API:%s)\n"), GetProp(GETPROP_ANDROID_RELEASE), GetProp(GETPROP_ANDROID_SDK));
 		}
-		para.nType |= CMD_READ_BACK_FILE;
-		para.strCmd = TEXT("adb shell cat /proc/version");
+	
 	default:
 		break;
 	}
-	CAdbInterface::CreateAdbProcess(&para);
-	strText.Append(para.strReturn);
+	if (type == AINFO_PROP)  {
+		InitAndroidProps();
+		strText = m_strGetPropLine;
+	} else if (AINFO_KEY_INFO == type) {
+		para.nType |= CMD_READ_BACK_FILE;
+		para.strCmd = TEXT("adb shell cat /proc/version");
+		CAdbInterface::CreateAdbProcess(&para);
+		strText.AppendFormat(TEXT("Linux: %s\n"), GetLinuxVersion(para.strReturn));
+		strText.AppendFormat(TEXT("Build Date: %s\n"), GetBuildDate(para.strReturn));
+	}
+	else {
+		CAdbInterface::CreateAdbProcess(&para);
+		strText.Append(para.strReturn);
+	}
 	strText.Replace(TEXT("\r"), TEXT("\n"));
 	strText.Replace(TEXT("\n"), TEXT("\r\n"));
 	strText.Replace(TEXT("\r\n\r\n"), TEXT("\r\n"));
 
 	m_editPhoneInfo.SetWindowTextW(strText);
+}
+
+CString CDialogPhoneInfo::GetLinuxVersion(const CString version) const
+{
+	int begin = version.Find(TEXT("ersion "));
+	int end = version.Find(TEXT('('));
+
+	return version.Mid(begin+7, end-begin-7);
+}
+
+CString CDialogPhoneInfo::GetBuildDate(const CString version) const
+{
+	static const std::wstring weekPat(TEXT("(Mon|Tue|Wed|Thu|Fri|Sat|Sun)"));
+	static const std::wstring datePat(TEXT("(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"));
+	static const std::wregex dateRegex(weekPat);
+
+	std::wstring line(version.GetString());
+
+	std::wsmatch results;
+	std::regex_search(line, results, dateRegex);
+	if (results.empty()) {
+		return TEXT("");
+	}
+	return version.Mid(results.position(0));
 }
 
 void CDialogPhoneInfo::OnShowWindow(BOOL bShow, UINT nStatus)
@@ -112,6 +150,7 @@ void CDialogPhoneInfo::InitAndroidProps()
 	para.strCmd = TEXT("adb shell getprop");
 	CAdbInterface::CreateAdbProcess(&para);
 
+	m_strGetPropLine = para.strReturn;
 	m_mapAndroidProps.clear();
 	CString strKey, strValue;
 	CString strItem;

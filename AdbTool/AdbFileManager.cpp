@@ -1,10 +1,10 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "AdbFileManager.h"
 #include <regex>
 #include <string>
 
-/* ���ļ� 5s
- * ����: 20s 
+/* ÓÃÎÄ¼þ 5s
+ * ²»ÓÃ: 20s 
 */
 #define MANAGER_LS_FILE			1
 const CString CAndroidFile::ROOT_DIR = TEXT("/");
@@ -152,7 +152,7 @@ void CAndroidFile::InitSubFiles(int depth/* = 2*/)
 		if ((depth == 0) && 
 			IsFirstLoadDir(this))
 		{
-			// ǿ�Ƽ��ز�����ҪĿ¼
+			// Ç¿ÖÆ¼ÓÔØ²¿·ÖÖØÒªÄ¿Â¼
 		} else {
 			return;
 		}
@@ -174,6 +174,8 @@ void CAndroidFile::InitSubFiles(int depth/* = 2*/)
 	int length = para.strReturn.GetLength();
 	wchar_t single;
 	CString strLine;
+    // ls: //init.bullhead.misc.rc: Permission denied 
+    // drwxr-xr-x  11 root   root     4096 1970-01-01 08:00 vendor
 	for (int i = 0; i < length; i++) {
 		single = para.strReturn.GetAt(i);
 
@@ -270,6 +272,8 @@ BOOL CAndroidFile::ValueIsNumbers(CString &strValue)
 	return TRUE;
 }
 /*
+ * Permission Denied: 
+ *      ls: //init.bullhead.misc.rc: Permission denied 
  * Dir:
  *		drwxrwx--- root     sdcard_r          1970-01-02 02:01 obb
  * File:
@@ -284,35 +288,60 @@ void CAndroidFile::ParseLlLine(CString llLine)
 	m_strLine = llLine;
 	vector<CString> vecPieces;
 
-	for (int i = 0; i < length; i++) 
-	{
-		single = llLine.GetAt(i);
-		if ((single != TEXT(' ')) &&
-			(single != TEXT('\t')))
-		{
-			strPart.AppendChar(single);
-		}
+    if (llLine.Find(L"Permission denied") != -1)
+    {
+        m_strMode = "Permission denied";
+        static const std::wstring pmdnPat(TEXT("//(.*?)\\:"));
+        static const std::wregex omdnPattern(pmdnPat);
 
-		if ((single == TEXT(' ')) ||
-			(single == TEXT('\t')) ||
-			(i == (length-1)))
-		{
-			if (strPart.IsEmpty())
-			{
-				continue;
-			}
-			vecPieces.push_back(strPart);
-			
-			strPart.Empty();
-		}
+        std::wstring line(llLine.GetString());
 
-	}
+        std::wsmatch result;
+        std::regex_search(line, result, omdnPattern);
+        
+        std::wsmatch::iterator it = result.begin();
+       
+        if (result.size() > 1)
+        {
+            m_strName = result.str(1).c_str();
+        }
+        else
+        {
+            m_strName = L"Unknown";
+        }
+    }
+    else
+    {
+        for (int i = 0; i < length; i++)
+        {
+            single = llLine.GetAt(i);
+            if ((single != TEXT(' ')) &&
+                (single != TEXT('\t')))
+            {
+                strPart.AppendChar(single);
+            }
 
-	ParseLsPieces(vecPieces);
+            if ((single == TEXT(' ')) ||
+                (single == TEXT('\t')) ||
+                (i == (length - 1)))
+            {
+                if (strPart.IsEmpty())
+                {
+                    continue;
+                }
+                vecPieces.push_back(strPart);
+
+                strPart.Empty();
+            }
+
+        }
+        ParseLsPieces(vecPieces);
+    }
+
 	GeneratePath();
 
 	if (IsLink()) {
-		/* �����ǰ�ļ�����ͬ����link�ļ���ֱ�Ӹ�ֵ */
+		/* Èç¹ûµ±Ç°ÎÄ¼þ¼ÐÓÐÍ¬ÑùµÄlinkÎÄ¼þÔòÖ±½Ó¸³Öµ */
 		if (!AssignParentLinks(m_strLink, this, m_pParent)) {
 			m_nType = LinkPathIsDir(m_strPath) ? FTYPE_DIR : FTYPE_FILE;
 			m_strLink = ParseToRealPath(m_strLink);

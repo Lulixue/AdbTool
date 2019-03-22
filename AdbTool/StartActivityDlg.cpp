@@ -1,4 +1,4 @@
-// StartActivityDlg.cpp :  µœ÷Œƒº˛
+Ôªø// StartActivityDlg.cpp : √ä¬µ√è√ñ√é√Ñ¬º√æ
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 #include "AdbInterface.h"
 
-// CStartActivityDlg ∂‘ª∞øÚ
+// CStartActivityDlg ¬∂√î¬ª¬∞¬ø√≤
 
 IMPLEMENT_DYNAMIC(CStartActivityDlg, CDialogEx)
 
@@ -43,9 +43,9 @@ BOOL CStartActivityDlg::StartActivity()
 
 	BOOL bRet = ADB.StartActivity(para);
 	if (!bRet) {
-		MessageBox(TEXT("∆Ù∂Ø”¶”√ ß∞‹!"), TEXT("Error"), MB_ICONSTOP);
+		MessageBox(TEXT("Failed to start activity!"), TEXT("Error"), MB_ICONSTOP);
 	} else {
-		MessageBox(TEXT("∆Ù∂Ø”¶”√≥…π¶!"), TEXT("Info"), MB_ICONINFORMATION);
+		MessageBox(TEXT("Activity started!"), TEXT("Info"), MB_ICONINFORMATION);
 	}
 	return bRet;
 }

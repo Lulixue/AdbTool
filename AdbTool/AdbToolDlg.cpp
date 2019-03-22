@@ -1,5 +1,5 @@
-
-// AdbToolDlg.cpp : ÊµÏÖÎÄ¼ş
+ï»¿
+// AdbToolDlg.cpp : ÃŠÂµÃÃ–ÃÃ„Â¼Ã¾
 //
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@
 
 #define POINT_RADIUS		10
 
-vector<int> g_vecOtherCtrls;	// ³ıÏÔÊ¾½çÃæÍâ±ğµÄ¿Ø¼ş
+vector<int> g_vecOtherCtrls;	// Â³Ã½ÃÃ”ÃŠÂ¾Â½Ã§ÃƒÃ¦ÃÃ¢Â±Ã°ÂµÃ„Â¿Ã˜Â¼Ã¾
 vector<CRect> g_vecOtherCtrlsDefPos;
 CCriticalSection g_cs;
 
@@ -44,20 +44,20 @@ BOOL g_bDisableDeviceChange = FALSE;
 CString g_strToolDate;
 CString g_strCopyRight;
 
-// ÓÃÓÚÓ¦ÓÃ³ÌĞò¡°¹ØÓÚ¡±²Ëµ¥ÏîµÄ CAboutDlg ¶Ô»°¿ò
+// Ã“ÃƒÃ“ÃšÃ“Â¦Ã“ÃƒÂ³ÃŒÃÃ²Â¡Â°Â¹Ã˜Ã“ÃšÂ¡Â±Â²Ã‹ÂµÂ¥ÃÃ®ÂµÃ„ CAboutDlg Â¶Ã”Â»Â°Â¿Ã²
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// Â¶Ã”Â»Â°Â¿Ã²ÃŠÃ½Â¾Ã
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ã–Â§Â³Ã–
 
-// ÊµÏÖ
+// ÃŠÂµÃÃ–
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -87,7 +87,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CAdbToolDlg ¶Ô»°¿ò
+// CAdbToolDlg Â¶Ã”Â»Â°Â¿Ã²
 
 CAdbToolDlg *g_pToolDlg;
 
@@ -102,6 +102,8 @@ CAdbToolDlg::CAdbToolDlg(CWnd* pParent /*=NULL*/)
 #define DestroyToolDialog(pDlg) \
 	do {\
 		if (pDlg) { \
+            /* to avoid memory leak */\
+            ::SendMessage(pDlg->GetSafeHwnd(), WM_CLOSE, 0, 0);\
 			pDlg->DestroyWindow();\
 			pDlg = NULL;\
 		}\
@@ -109,7 +111,7 @@ CAdbToolDlg::CAdbToolDlg(CWnd* pParent /*=NULL*/)
 
 CAdbToolDlg::~CAdbToolDlg() 
 {
-	TRACE("%s\n", __FUNCTION__);
+    TRACE("%s\n", __FUNCTION__);
 	DestroyToolDialog(g_pDlgFileManager);
 	DestroyToolDialog(g_pDlgWifi);
 	DestroyToolDialog(g_pDlgInputLog);
@@ -219,7 +221,7 @@ void CAdbToolDlg::RegisterDevice()
 			NotificationFilter.dbcc_classguid = GUID_DEVINTERFACE_LIST[i];
 			hDevNotify = RegisterDeviceNotification(m_hWnd, &NotificationFilter, DEVICE_NOTIFY_WINDOW_HANDLE);
 			if( !hDevNotify ) {
-				::MessageBox(m_hWnd, TEXT("×¢²áUSBÉè±¸Í¨ÖªÊ§°Ü"), TEXT("´íÎó"), MB_ICONERROR);
+				::MessageBox(m_hWnd, TEXT("Ã—Â¢Â²Ã¡USBÃ‰Ã¨Â±Â¸ÃÂ¨Ã–ÂªÃŠÂ§Â°Ãœ"), TEXT("Â´Ã­ÃÃ³"), MB_ICONERROR);
 				break;
 			}
 		}
@@ -319,7 +321,7 @@ void CAdbToolDlg::SetCompileDateTime()
     int iYear, iMonth, iDay;
     int iHour,iMin,iSec;
 
-    //»ñÈ¡±àÒëÈÕÆÚ¡¢Ê±¼ä 
+    //Â»Ã±ÃˆÂ¡Â±Ã Ã’Ã«ÃˆÃ•Ã†ÃšÂ¡Â¢ÃŠÂ±Â¼Ã¤ 
     sprintf_s(szTmpDate,"%s", __DATE__); //"Sep 18 2010" 
     sprintf_s(szTmpTime,"%s", __TIME__); //"10:59:19" 
 
@@ -381,9 +383,9 @@ BOOL CAdbToolDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ½«¡°¹ØÓÚ...¡±²Ëµ¥ÏîÌí¼Óµ½ÏµÍ³²Ëµ¥ÖĞ¡£
+	// Â½Â«Â¡Â°Â¹Ã˜Ã“Ãš...Â¡Â±Â²Ã‹ÂµÂ¥ÃÃ®ÃŒÃ­Â¼Ã“ÂµÂ½ÃÂµÃÂ³Â²Ã‹ÂµÂ¥Ã–ÃÂ¡Â£
 
-	// IDM_ABOUTBOX ±ØĞëÔÚÏµÍ³ÃüÁî·¶Î§ÄÚ¡£
+	// IDM_ABOUTBOX Â±Ã˜ÃÃ«Ã”ÃšÃÂµÃÂ³ÃƒÃ¼ÃÃ®Â·Â¶ÃÂ§Ã„ÃšÂ¡Â£
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -400,11 +402,11 @@ BOOL CAdbToolDlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
+	// Ã‰Ã¨Ã–ÃƒÂ´Ã‹Â¶Ã”Â»Â°Â¿Ã²ÂµÃ„ÃÂ¼Â±ÃªÂ¡Â£ÂµÂ±Ã“Â¦Ã“ÃƒÂ³ÃŒÃÃ²Ã–Ã·Â´Â°Â¿ÃšÂ²Â»ÃŠÃ‡Â¶Ã”Â»Â°Â¿Ã²ÃŠÂ±Â£Â¬Â¿Ã²Â¼ÃœÂ½Â«Ã—Ã”Â¶Â¯
+	//  Ã–Â´ÃÃÂ´Ã‹Â²Ã™Ã—Ã·
 
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	SetIcon(m_hIcon, TRUE);			// Ã‰Ã¨Ã–ÃƒÂ´Ã³ÃÂ¼Â±Ãª
+	SetIcon(m_hIcon, FALSE);		// Ã‰Ã¨Ã–ÃƒÃÂ¡ÃÂ¼Â±Ãª
 
 	CAdbInterface::StaticInit();
 	CAdbProcessManager::Init();
@@ -446,7 +448,7 @@ BOOL CAdbToolDlg::OnInitDialog()
 
 	m_menuMain.LoadMenuW(IDR_MENU_MAIN);
 	SetMenu(&m_menuMain);
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // Â³Ã½Â·Ã‡Â½Â«Â½Â¹ÂµÃ£Ã‰Ã¨Ã–ÃƒÂµÂ½Â¿Ã˜Â¼Ã¾Â£Â¬Â·Ã±Ã”Ã²Â·ÂµÂ»Ã˜ TRUE
 }
 
 
@@ -533,19 +535,19 @@ void CAdbToolDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// ÃˆÃ§Â¹Ã»ÃÃ²Â¶Ã”Â»Â°Â¿Ã²ÃŒÃ­Â¼Ã“Ã—Ã®ÃÂ¡Â»Â¯Â°Â´Ã…Â¥Â£Â¬Ã”Ã²ÃÃ¨Ã’ÂªÃÃ‚ÃƒÃ¦ÂµÃ„Â´ÃºÃ‚Ã«
+//  Ã€Â´Â»Ã¦Ã–Ã†Â¸ÃƒÃÂ¼Â±ÃªÂ¡Â£Â¶Ã”Ã“ÃšÃŠÂ¹Ã“ÃƒÃÃ„ÂµÂµ/ÃŠÃ“ÃÂ¼Ã„Â£ÃÃÂµÃ„ MFC Ã“Â¦Ã“ÃƒÂ³ÃŒÃÃ²Â£Â¬
+//  Ã•Ã¢Â½Â«Ã“Ã‰Â¿Ã²Â¼ÃœÃ—Ã”Â¶Â¯ÃÃªÂ³Ã‰Â¡Â£
 
 void CAdbToolDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // Ã“ÃƒÃ“ÃšÂ»Ã¦Ã–Ã†ÂµÃ„Ã‰Ã¨Â±Â¸Ã‰ÃÃÃ‚ÃÃ„
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ÃŠÂ¹ÃÂ¼Â±ÃªÃ”ÃšÂ¹Â¤Ã—Ã·Ã‡Ã¸Â¾Ã˜ÃÃÃ–ÃÂ¾Ã“Ã–Ã
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -553,7 +555,7 @@ void CAdbToolDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// Â»Ã¦Ã–Ã†ÃÂ¼Â±Ãª
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -563,8 +565,8 @@ void CAdbToolDlg::OnPaint()
 	DrawScreen();
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//ÂµÂ±Ã“ÃƒÂ»Â§ÃÃÂ¶Â¯Ã—Ã®ÃÂ¡Â»Â¯Â´Â°Â¿ÃšÃŠÂ±ÃÂµÃÂ³ÂµÃ·Ã“ÃƒÂ´Ã‹ÂºÂ¯ÃŠÃ½ÃˆÂ¡ÂµÃƒÂ¹Ã¢Â±Ãª
+//ÃÃ”ÃŠÂ¾Â¡Â£
 HCURSOR CAdbToolDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -971,7 +973,7 @@ void CAdbToolDlg::OnMouseMove(UINT nFlags, CPoint point)
 
 void CAdbToolDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«ÂºÃ/Â»Ã²ÂµÃ·Ã“ÃƒÃ„Â¬ÃˆÃÃ–Âµ
 	
 	CDialogEx::OnLButtonDblClk(nFlags, point);
 }
@@ -979,7 +981,7 @@ void CAdbToolDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 void CAdbToolDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«ÂºÃ/Â»Ã²ÂµÃ·Ã“ÃƒÃ„Â¬ÃˆÃÃ–Âµ
 	ResetSwipe();
 	if (PtInRect(&m_rcClientScreen, point))
 	{
@@ -1011,7 +1013,7 @@ void CAdbToolDlg::ResetSwipe()
 
 void CAdbToolDlg::OnRButtonDblClk(UINT nFlags, CPoint point)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«ÂºÃ/Â»Ã²ÂµÃ·Ã“ÃƒÃ„Â¬ÃˆÃÃ–Âµ
 	if (PtInRect(&m_rcClientScreen, point))
 	{
 		UpdateScreen(0);
@@ -1203,7 +1205,7 @@ void CAdbToolDlg::OnSizing(UINT fwSide, LPRECT pRect)
 
 void CAdbToolDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«ÂºÃ/Â»Ã²ÂµÃ·Ã“ÃƒÃ„Â¬ÃˆÃÃ–Âµ
 	lpMMI->ptMinTrackSize.x = 645;
 	lpMMI->ptMinTrackSize.y = 461;
 	//lpMMI->ptMaxTrackSize.x = 645;
@@ -1437,7 +1439,7 @@ void CAdbToolDlg::OnBnClickedBtnSaveScreen()
 
 	CFileDialog dlg(FALSE, TEXT("txt"), sFileName,
 		OFN_OVERWRITEPROMPT|OFN_HIDEREADONLY,
-		TEXT("photo(*.png)|*.png||"), this);  //OFN_HIDEREADONLY°ÑÖ»¶ÁÎÄ¼şÒş²ØÆğÀ´
+		TEXT("photo(*.png)|*.png||"), this);  //OFN_HIDEREADONLYÂ°Ã‘Ã–Â»Â¶ÃÃÃ„Â¼Ã¾Ã’Ã¾Â²Ã˜Ã†Ã°Ã€Â´
 
 	dlg.m_ofn.lpstrTitle = _T("Save screenshot");
 
@@ -1451,9 +1453,9 @@ void CAdbToolDlg::OnBnClickedBtnSaveScreen()
 
 	BOOL bRet = CopyFile(srcPath, destPath, FALSE);
 	if (bRet) {
-		MessageBox(TEXT("±£´æ³É¹¦"));
+		MessageBox(TEXT("Â±Â£Â´Ã¦Â³Ã‰Â¹Â¦"));
 	} else {
-		MessageBox(TEXT("±£´æÊ§°Ü"));
+		MessageBox(TEXT("Â±Â£Â´Ã¦ÃŠÂ§Â°Ãœ"));
 	}
 
 }
@@ -1527,7 +1529,7 @@ void CAdbToolDlg::OnBnClickedBtnProcessManager()
 
 void CAdbToolDlg::OnClose()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«ÂºÃ/Â»Ã²ÂµÃ·Ã“ÃƒÃ„Â¬ÃˆÃÃ–Âµ
 	//CAdbInterface::StopAllSubThreads();
 	CDialogEx::OnClose();
 }

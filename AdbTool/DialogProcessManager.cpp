@@ -1,4 +1,4 @@
-// DialogProcessManager.cpp : ÊµÏÖÎÄ¼ş
+ï»¿// DialogProcessManager.cpp : ÃŠÂµÃÃ–ÃÃ„Â¼Ã¾
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 using std::multimap;
 
 
-// CDialogProcessManager ¶Ô»°¿ò
+// CDialogProcessManager Â¶Ã”Â»Â°Â¿Ã²
 
 IMPLEMENT_DYNAMIC(CDialogProcessManager, CDialogEx)
 
@@ -26,6 +26,7 @@ CDialogProcessManager::CDialogProcessManager(CWnd* pParent /*=NULL*/)
 
 CDialogProcessManager::~CDialogProcessManager()
 {
+    TRACE("%s\n", __FUNCTION__);
 }
 
 void CDialogProcessManager::DoDataExchange(CDataExchange* pDX)
@@ -55,7 +56,7 @@ BEGIN_MESSAGE_MAP(CDialogProcessManager, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CDialogProcessManager ÏûÏ¢´¦Àí³ÌĞò
+// CDialogProcessManager ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²
 
 BOOL CDialogProcessManager::OnInitDialog()
 {
@@ -76,10 +77,10 @@ BOOL CDialogProcessManager::OnInitDialog()
 
 
 	DWORD dwStyle = m_listProcesses.GetExtendedStyle();
-	dwStyle |= LVS_EX_FULLROWSELECT;//Ñ¡ÖĞÄ³ĞĞÊ¹ÕûĞĞ¸ßÁÁ£¨Ö»ÊÊÓÃÓëreport·ç¸ñµÄlistctrl£©
-	dwStyle |= LVS_EX_GRIDLINES;//Íø¸ñÏß£¨Ö»ÊÊÓÃÓëreport·ç¸ñµÄlistctrl£©
-	//dwStyle |= LVS_EX_CHECKBOXES;//itemÇ°Éú³Écheckbox¿Ø¼ş
-	m_listProcesses.SetExtendedStyle(dwStyle); //ÉèÖÃÀ©Õ¹·ç¸ñ
+	dwStyle |= LVS_EX_FULLROWSELECT;//Ã‘Â¡Ã–ÃÃ„Â³ÃÃÃŠÂ¹Ã•Ã»ÃÃÂ¸ÃŸÃÃÂ£Â¨Ã–Â»ÃŠÃŠÃ“ÃƒÃ“Ã«reportÂ·Ã§Â¸Ã±ÂµÃ„listctrlÂ£Â©
+	dwStyle |= LVS_EX_GRIDLINES;//ÃÃ¸Â¸Ã±ÃÃŸÂ£Â¨Ã–Â»ÃŠÃŠÃ“ÃƒÃ“Ã«reportÂ·Ã§Â¸Ã±ÂµÃ„listctrlÂ£Â©
+	//dwStyle |= LVS_EX_CHECKBOXES;//itemÃ‡Â°Ã‰ÃºÂ³Ã‰checkboxÂ¿Ã˜Â¼Ã¾
+	m_listProcesses.SetExtendedStyle(dwStyle); //Ã‰Ã¨Ã–ÃƒÃ€Â©Ã•Â¹Â·Ã§Â¸Ã±
 
 
 	vector<FILE_COLUMN_T>::const_iterator cit = m_vecColumns.begin();
@@ -209,7 +210,7 @@ void CDialogProcessManager::OnNcDestroy()
 {
 	CDialogEx::OnNcDestroy();
 
-	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂë
+	// TODO: Ã”ÃšÂ´Ã‹Â´Â¦ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
 	delete this;
 }
 
@@ -384,8 +385,8 @@ void CDialogProcessManager::SelectTreeItem(HTREEITEM item)
 void CDialogProcessManager::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂë
-	// ²»Îª»æÍ¼ÏûÏ¢µ÷ÓÃ CDialogEx::OnPaint()
+	// TODO: Ã”ÃšÂ´Ã‹Â´Â¦ÃŒÃ­Â¼Ã“ÃÃ»ÃÂ¢Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
+	// Â²Â»ÃÂªÂ»Ã¦ÃÂ¼ÃÃ»ÃÂ¢ÂµÃ·Ã“Ãƒ CDialogEx::OnPaint()
 	if (g_bLoadFinished) {
 		g_bLoadFinished = FALSE;
 		UpdateCtrls();
@@ -471,11 +472,11 @@ void CDialogProcessManager::OnProcesssubmenuKill()
 	}
 	CString info;
 	if (para.strReturn.IsEmpty()) {
-		info.Format(TEXT("½ø³Ì[%s]%sÒÑ±»³É¹¦É±ËÀ!"), process.PID, process.NAME);
+		info.Format(TEXT("Â½Ã¸Â³ÃŒ[%s]%sÃ’Ã‘Â±Â»Â³Ã‰Â¹Â¦Ã‰Â±Ã‹Ã€!"), process.PID, process.NAME);
 		MessageBox(info, TEXT("Info"), MB_ICONINFORMATION);
 		Refresh();
 	} else {
-		info.Format(TEXT("³¢ÊÔÉ±ËÀ½ø³Ì[%s]%sÊ§°Ü: %s"), process.PID, process.NAME, para.strReturn);
+		info.Format(TEXT("Â³Â¢ÃŠÃ”Ã‰Â±Ã‹Ã€Â½Ã¸Â³ÃŒ[%s]%sÃŠÂ§Â°Ãœ: %s"), process.PID, process.NAME, para.strReturn);
 		MessageBox(info, TEXT("Error"), MB_ICONSTOP);
 	}
 }
@@ -506,18 +507,18 @@ void CDialogProcessManager::OnNMRClickListProcesses(NMHDR *pNMHDR, LRESULT *pRes
 	}
 
 	m_nCurrentSelectItem = pNMItemActivate->iItem-1;
-	CMenu menu; //¶¨ÒåÏÂÃæÒªÓÃµ½µÄcmenu¶ÔÏó
+	CMenu menu; //Â¶Â¨Ã’Ã¥ÃÃ‚ÃƒÃ¦Ã’ÂªÃ“ÃƒÂµÂ½ÂµÃ„cmenuÂ¶Ã”ÃÃ³
 	if (IsPackageItemSelected()) {
 		menu.LoadMenu(IDR_MENU_PACKAGE_OPERATIONS);
 	} else {
-		menu.LoadMenu(IDR_MENU_PROCESS); //×°ÔØ×Ô¶¨ÒåµÄÓÒ¼ü²Ëµ¥ 
+		menu.LoadMenu(IDR_MENU_PROCESS); //Ã—Â°Ã”Ã˜Ã—Ã”Â¶Â¨Ã’Ã¥ÂµÃ„Ã“Ã’Â¼Ã¼Â²Ã‹ÂµÂ¥ 
 	}
-	CMenu *pPopup = menu.GetSubMenu(0); //»ñÈ¡µÚÒ»¸öµ¯³ö²Ëµ¥£¬ËùÒÔµÚÒ»¸ö²Ëµ¥±ØĞëÓĞ×Ó²Ëµ¥
+	CMenu *pPopup = menu.GetSubMenu(0); //Â»Ã±ÃˆÂ¡ÂµÃšÃ’Â»Â¸Ã¶ÂµÂ¯Â³Ã¶Â²Ã‹ÂµÂ¥Â£Â¬Ã‹Ã¹Ã’Ã”ÂµÃšÃ’Â»Â¸Ã¶Â²Ã‹ÂµÂ¥Â±Ã˜ÃÃ«Ã“ÃÃ—Ã“Â²Ã‹ÂµÂ¥
 
-	CPoint point1;//¶¨ÒåÒ»¸öÓÃÓÚÈ·¶¨¹â±êÎ»ÖÃµÄÎ»ÖÃ 
-	GetCursorPos(&point1);//»ñÈ¡µ±Ç°¹â±êµÄÎ»ÖÃ£¬ÒÔ±ãÊ¹µÃ²Ëµ¥¿ÉÒÔ¸úËæ¹â±ê 
+	CPoint point1;//Â¶Â¨Ã’Ã¥Ã’Â»Â¸Ã¶Ã“ÃƒÃ“ÃšÃˆÂ·Â¶Â¨Â¹Ã¢Â±ÃªÃÂ»Ã–ÃƒÂµÃ„ÃÂ»Ã–Ãƒ 
+	GetCursorPos(&point1);//Â»Ã±ÃˆÂ¡ÂµÂ±Ã‡Â°Â¹Ã¢Â±ÃªÂµÃ„ÃÂ»Ã–ÃƒÂ£Â¬Ã’Ã”Â±Ã£ÃŠÂ¹ÂµÃƒÂ²Ã‹ÂµÂ¥Â¿Ã‰Ã’Ã”Â¸ÃºÃ‹Ã¦Â¹Ã¢Â±Ãª 
 
-	pPopup->TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point1.x,point1.y, this);//ÔÚÖ¸¶¨Î»ÖÃÏÔÊ¾µ¯³ö²Ëµ¥
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point1.x,point1.y, this);//Ã”ÃšÃ–Â¸Â¶Â¨ÃÂ»Ã–ÃƒÃÃ”ÃŠÂ¾ÂµÂ¯Â³Ã¶Â²Ã‹ÂµÂ¥
 
 
 	*pResult = 0;
@@ -628,7 +629,7 @@ void CDialogProcessManager::OnPackageoperationsForcestop()
 		return;
 	}
 	CString info;
-	info.Format(TEXT("È·ÈÏÍ£Ö¹:%s?"), process.NAME);
+	info.Format(TEXT("ÃˆÂ·ÃˆÃÃÂ£Ã–Â¹:%s?"), process.NAME);
 	int nRet = MessageBox(info, TEXT("Warning"), MB_ICONQUESTION | MB_YESNOCANCEL);
 	if (nRet != IDYES) {
 		return;
@@ -658,7 +659,7 @@ void CDialogProcessManager::OnPackageoperationsUninstall()
 		return;
 	}
 	CString info;
-	info.Format(TEXT("È·ÈÏĞ¶ÔØ°ü:%s?"), process.NAME);
+	info.Format(TEXT("ÃˆÂ·ÃˆÃÃÂ¶Ã”Ã˜Â°Ã¼:%s?"), process.NAME);
 	int nRet = MessageBox(info, TEXT("Warning"), MB_ICONQUESTION | MB_YESNOCANCEL);
 	if (nRet != IDYES) {
 		return;
@@ -669,11 +670,11 @@ void CDialogProcessManager::OnPackageoperationsUninstall()
 	}
 }
 
-/* ÔÚtreeÖĞÌø×ªµ½×Ó½ø³Ì¡¡*/
+/* Ã”ÃštreeÃ–ÃÃŒÃ¸Ã—ÂªÂµÂ½Ã—Ã“Â½Ã¸Â³ÃŒÂ¡Â¡*/
 void CDialogProcessManager::OnNMDblclkListProcesses(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“Â¿Ã˜Â¼Ã¾ÃÂ¨Ã–ÂªÂ´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
 	*pResult = 0;
 	if (pNMItemActivate->iItem <= 0) {
 		return;

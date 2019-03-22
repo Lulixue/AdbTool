@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include <TlHelp32.h>
 #include "AdbInterface.h"
 #include <fstream>
@@ -176,30 +176,30 @@ void CAdbInterface::GetAdbProcessInfo()
 void CAdbInterface::GetProcessIDs(CString strExe)
 {
 	CString processName = strExe;
-	//´´½¨½ø³Ì¿ìÕÕ(TH32CS_SNAPPROCESS±íÊ¾´´½¨ËùÓÐ½ø³ÌµÄ¿ìÕÕ)
+	//Â´Â´Â½Â¨Â½Ã¸Â³ÃŒÂ¿Ã¬Ã•Ã•(TH32CS_SNAPPROCESSÂ±Ã­ÃŠÂ¾Â´Â´Â½Â¨Ã‹Ã¹Ã“ÃÂ½Ã¸Â³ÃŒÂµÃ„Â¿Ã¬Ã•Ã•)
 	HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
-	//PROCESSENTRY32½ø³Ì¿ìÕÕµÄ½á¹¹Ìå       
+	//PROCESSENTRY32Â½Ã¸Â³ÃŒÂ¿Ã¬Ã•Ã•ÂµÃ„Â½Ã¡Â¹Â¹ÃŒÃ¥       
 	PROCESSENTRY32 pe;          
-	//ÊµÀý»¯ºóÊ¹ÓÃProcess32First»ñÈ¡µÚÒ»¸ö¿ìÕÕµÄ½ø³ÌÇ°±Ø×öµÄ³õÊ¼»¯²Ù×÷
+	//ÃŠÂµÃ€Ã½Â»Â¯ÂºÃ³ÃŠÂ¹Ã“ÃƒProcess32FirstÂ»Ã±ÃˆÂ¡ÂµÃšÃ’Â»Â¸Ã¶Â¿Ã¬Ã•Ã•ÂµÃ„Â½Ã¸Â³ÃŒÃ‡Â°Â±Ã˜Ã—Ã¶ÂµÃ„Â³ÃµÃŠÂ¼Â»Â¯Â²Ã™Ã—Ã·
 	pe.dwSize = sizeof(PROCESSENTRY32); 
-	//ÏÂÃæµÄIFÐ§¹ûÍ¬:       
-	//if(hProcessSnap == INVALID_HANDLE_VALUE)   ÎÞÐ§µÄ¾ä±ú  
+	//ÃÃ‚ÃƒÃ¦ÂµÃ„IFÃÂ§Â¹Ã»ÃÂ¬:       
+	//if(hProcessSnap == INVALID_HANDLE_VALUE)   ÃŽÃžÃÂ§ÂµÃ„Â¾Ã¤Â±Ãº  
 	if(!Process32First(hSnapShot,&pe))  
 	{          
 		return;    
 	}          
 	processName.MakeLower();  
 	BOOL clearprocess = FALSE;
-	//Èç¹û¾ä±úÓÐÐ§  ÔòÒ»Ö±»ñÈ¡ÏÂÒ»¸ö¾ä±úÑ­»·ÏÂÈ¥ 
+	//ÃˆÃ§Â¹Ã»Â¾Ã¤Â±ÃºÃ“ÃÃÂ§  Ã”Ã²Ã’Â»Ã–Â±Â»Ã±ÃˆÂ¡ÃÃ‚Ã’Â»Â¸Ã¶Â¾Ã¤Â±ÃºÃ‘Â­Â»Â·ÃÃ‚ÃˆÂ¥ 
 	while (Process32Next(hSnapShot,&pe))  
 	{               
-		//pe.szExeFile»ñÈ¡µ±Ç°½ø³ÌµÄ¿ÉÖ´ÐÐÎÄ¼þÃû³Æ 
+		//pe.szExeFileÂ»Ã±ÃˆÂ¡ÂµÂ±Ã‡Â°Â½Ã¸Â³ÃŒÂµÃ„Â¿Ã‰Ã–Â´ÃÃÃŽÃ„Â¼Ã¾ÃƒÃ»Â³Ã† 
 		CString scTmp = pe.szExeFile;    
 		scTmp.MakeLower();             
 		char modPath[MAX_PATH] = {0};
 		if(!scTmp.Compare(processName))    
 		{                   
-			//´Ó¿ìÕÕ½ø³ÌÖÐ»ñÈ¡¸Ã½ø³ÌµÄPID(¼´ÈÎÎñ¹ÜÀíÆ÷ÖÐµÄPID)
+			//Â´Ã“Â¿Ã¬Ã•Ã•Â½Ã¸Â³ÃŒÃ–ÃÂ»Ã±ÃˆÂ¡Â¸ÃƒÂ½Ã¸Â³ÃŒÂµÃ„PID(Â¼Â´ÃˆÃŽÃŽÃ±Â¹ÃœÃ€Ã­Ã†Ã·Ã–ÃÂµÃ„PID)
 			DWORD dwProcessID = pe.th32ProcessID;   
 
 			s_vecAdbProcessIds.push_back(dwProcessID);
@@ -462,7 +462,7 @@ BOOL CAdbInterface::GetDevices()
 	para.nType = CMD_INFINITE;
 	para.bRet = CAdbInterface::CreateAdbProcess(&para);
 
-	// ¿ÉÄÜÊÇ360ÊÖ»úÖúÊÖ, ½ðÉ½ÊÖ»úÖúÊÖÕ¼ÓÃADB¶Ë¿Ú
+	// Â¿Ã‰Ã„ÃœÃŠÃ‡360ÃŠÃ–Â»ÃºÃ–ÃºÃŠÃ–, Â½Ã°Ã‰Â½ÃŠÃ–Â»ÃºÃ–ÃºÃŠÃ–Ã•Â¼Ã“ÃƒADBÂ¶Ã‹Â¿Ãš
 	/* protocol fault (couldn't read status length) 
 	 * protocol fault (couldn't read status length)
 	 * protocol fault (couldn't read status)
@@ -794,7 +794,7 @@ CString CAdbInterface::CleanString(CString str)
 			(ch != TEXT('\n')) &&
 			(ch != TEXT(' ')) &&
 			(ch != TEXT('\t')) &&
-			(ch != TEXT('')))
+			(ch != TEXT('\0')))
 		{
 			sIndex = i;
 			break;
@@ -808,7 +808,7 @@ CString CAdbInterface::CleanString(CString str)
 			(ch != TEXT('\n')) &&
 			(ch != TEXT(' ')) &&
 			(ch != TEXT('\t')) &&
-			(ch != TEXT('')))
+			(ch != TEXT('\0')))
 		{
 			eIndex = i;
 			break;
@@ -923,13 +923,13 @@ BOOL CAdbInterface::_CreateAdbProcess(P_PARAM_T para)
 
 	para->strReturn = TEXT("");
 	if (!CreatePipe(&hRead,&hWrite,&sa,0)) {
-		para->strReturn = TEXT("´´½¨¹ÜµÀÊ§°Ü!");
+		para->strReturn = TEXT("Â´Â´Â½Â¨Â¹ÃœÂµÃ€ÃŠÂ§Â°Ãœ!");
 		return FALSE;
 	}
 
 	STARTUPINFO si = {0};
 	si.cb = sizeof(si);
-	si.dwFlags |= STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES; // Ê¹ÓÃÄ¬ÈÏµÄIO¾ä±ú
+	si.dwFlags |= STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES; // ÃŠÂ¹Ã“ÃƒÃ„Â¬ÃˆÃÂµÃ„IOÂ¾Ã¤Â±Ãº
 
 	si.hStdOutput = hWrite;
 	si.hStdError = hWrite;
@@ -950,17 +950,16 @@ BOOL CAdbInterface::_CreateAdbProcess(P_PARAM_T para)
 		//si.dwYSize = 1080;
 		//si.dwFlags = STARTF_USECOUNTCHARS | STARTF_USESHOWWINDOW | STARTF_USESIZE;
 	}
-	TRACE(TEXT("%s"), para->strCmd);
-	TRACE(TEXT("\n"));
+	TRACE(TEXT("%s\n"), para->strCmd);
 
 	if (!CreateProcess(NULL, para->strCmd.GetBuffer(), NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi))  
 	{  
-		para->strReturn = TEXT("´´½¨½ø³ÌÊ§°Ü!");
+		para->strReturn = TEXT("Â´Â´Â½Â¨Â½Ã¸Â³ÃŒÃŠÂ§Â°Ãœ!");
 		return FALSE;
 	}
 
 	s_vecAdbProcessIds.push_back(pi.dwProcessId);
-	// Ïß³Ì²»ÔÙ±»·ÃÎÊ,¹Ø±Õ¾ä±ú,²»Ó°Ïì¾ä±úÔËÐÐ
+	// ÃÃŸÂ³ÃŒÂ²Â»Ã”Ã™Â±Â»Â·ÃƒÃŽÃŠ,Â¹Ã˜Â±Ã•Â¾Ã¤Â±Ãº,Â²Â»Ã“Â°ÃÃ¬Â¾Ã¤Â±ÃºÃ”Ã‹ÃÃ
 	CloseHandle(pi.hThread);	
 
 
@@ -991,11 +990,11 @@ BOOL CAdbInterface::_CreateAdbProcess(P_PARAM_T para)
 	}
 
 	DWORD dwExitCode;
-	// Ïß³Ì½áÊø,»ñÈ¡·µ»ØÂë
+	// ÃÃŸÂ³ÃŒÂ½Ã¡ÃŠÃ¸,Â»Ã±ÃˆÂ¡Â·ÂµÂ»Ã˜Ã‚Ã«
 	GetExitCodeProcess(pi.hProcess,
 		&dwExitCode);
 
-	// ¹Ø±ÕÏß³Ì¾ä±ú
+	// Â¹Ã˜Â±Ã•ÃÃŸÂ³ÃŒÂ¾Ã¤Â±Ãº
 	CloseHandle(pi.hProcess);
 	CloseHandle(hWrite);
 
@@ -1035,8 +1034,7 @@ BOOL CAdbInterface::_CreateAdbProcess(P_PARAM_T para)
 	* daemon started successfully * */
 
 	CloseHandle(hRead);
-	TRACE(TEXT("%s"), para->strReturn);
-	TRACE(TEXT("\n"));
+	TRACE(TEXT("%s\n"), para->strReturn);
 
 	SendDebugMessage(para->strReturn);
 

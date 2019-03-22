@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "AdbInterface.h"
 
 
@@ -24,7 +24,7 @@ enum ANDROID_INT_ORDER {
 class CAndroidIntrrupt 
 {
 public:
-	CAndroidIntrrupt() : no(0),system(FALSE) {}
+	CAndroidIntrrupt() : no(-1), gpio(-1), system(FALSE) {}
 
 public:
 	int no; /* irq no. */

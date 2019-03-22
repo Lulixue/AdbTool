@@ -1,4 +1,4 @@
-// DialogPackageManager.cpp : ÊµÏÖÎÄ¼ş
+ï»¿// DialogPackageManager.cpp : ÃŠÂµÃÃ–ÃÃ„Â¼Ã¾
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 using std::multimap;
 
 extern CDialogPackageManager *g_pDlgPackageManager;
-// CDialogPackageManager ¶Ô»°¿ò
+// CDialogPackageManager Â¶Ã”Â»Â°Â¿Ã²
 
 IMPLEMENT_DYNAMIC(CDialogPackageManager, CDialogEx)
 
@@ -22,6 +22,7 @@ CDialogPackageManager::CDialogPackageManager(CWnd* pParent /*=NULL*/)
 
 CDialogPackageManager::~CDialogPackageManager()
 {
+    TRACE("%s\n", __FUNCTION__);
 }
 
 void CDialogPackageManager::DoDataExchange(CDataExchange* pDX)
@@ -78,9 +79,9 @@ BOOL CDialogPackageManager::OnInitDialog()
 	m_listPackages.SetColumnWidth(3, 50);
 
 	DWORD dwStyle = m_listPackages.GetExtendedStyle();
-	dwStyle |= LVS_EX_FULLROWSELECT;//Ñ¡ÖĞÄ³ĞĞÊ¹ÕûĞĞ¸ßÁÁ£¨Ö»ÊÊÓÃÓëreport·ç¸ñµÄlistctrl£©
-	dwStyle |= LVS_EX_GRIDLINES;//Íø¸ñÏß£¨Ö»ÊÊÓÃÓëreport·ç¸ñµÄlistctrl£©
-	m_listPackages.SetExtendedStyle(dwStyle); //ÉèÖÃÀ©Õ¹·ç¸ñ
+	dwStyle |= LVS_EX_FULLROWSELECT;//Ã‘Â¡Ã–ÃÃ„Â³ÃÃÃŠÂ¹Ã•Ã»ÃÃÂ¸ÃŸÃÃÂ£Â¨Ã–Â»ÃŠÃŠÃ“ÃƒÃ“Ã«reportÂ·Ã§Â¸Ã±ÂµÃ„listctrlÂ£Â©
+	dwStyle |= LVS_EX_GRIDLINES;//ÃÃ¸Â¸Ã±ÃÃŸÂ£Â¨Ã–Â»ÃŠÃŠÃ“ÃƒÃ“Ã«reportÂ·Ã§Â¸Ã±ÂµÃ„listctrlÂ£Â©
+	m_listPackages.SetExtendedStyle(dwStyle); //Ã‰Ã¨Ã–ÃƒÃ€Â©Ã•Â¹Â·Ã§Â¸Ã±
 
 	m_cbPackageTypes.AddString(TEXT("Packages"));
 	m_cbPackageTypes.SetCurSel(0);
@@ -108,17 +109,17 @@ void ThreadInstallApk(LPVOID lP)
 	{
 		g_pDlgPackageManager->SetWindowTextW(strTitle);
 
-		MessageBox(g_pDlgPackageManager->GetSafeHwnd(), strFileName + TEXT(" °²×°³É¹¦!"), TEXT("ÏûÏ¢"), MB_ICONINFORMATION);
+		MessageBox(g_pDlgPackageManager->GetSafeHwnd(), strFileName + TEXT(" Â°Â²Ã—Â°Â³Ã‰Â¹Â¦!"), TEXT("ÃÃ»ÃÂ¢"), MB_ICONINFORMATION);
 	}
 	else 
 	{
 		g_pDlgPackageManager->SetWindowTextW(strTitle);
 
 		CString strError = strFileName;
-		strError += TEXT(" °²×°Ê§°Ü!\r\nÏêÏ¸ĞÅÏ¢: ");
+		strError += TEXT(" Â°Â²Ã—Â°ÃŠÂ§Â°Ãœ!\r\nÃÃªÃÂ¸ÃÃ…ÃÂ¢: ");
 		strError += ADB.GetAdbLastError();
 
-		::MessageBox(g_pDlgPackageManager->GetSafeHwnd(), strError, TEXT("´íÎó"), MB_ICONERROR);
+		::MessageBox(g_pDlgPackageManager->GetSafeHwnd(), strError, TEXT("Â´Ã­ÃÃ³"), MB_ICONERROR);
 	}
 	delete pStrPath;
 	g_pDlgPackageManager->EnableCtrls(TRUE);
@@ -431,7 +432,7 @@ void CDialogPackageManager::OnLvnColumnclickListPackages(NMHDR *pNMHDR, LRESULT 
 void CDialogPackageManager::OnNMClickListPackages(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“Â¿Ã˜Â¼Ã¾ÃÂ¨Ã–ÂªÂ´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
 	m_nCurrentSelectItem = pNMItemActivate->iItem;
 	*pResult = 0;
 }
@@ -455,11 +456,11 @@ BOOL UninstallPackage(HWND hwnd, CString package)
 	
 	CString info;
 	if (para.strReturn.Find(TEXT("Success")) != -1) {
-		info.Format(TEXT("³É¹¦Ğ¶ÔØ: %s"), package);
+		info.Format(TEXT("Uninstalled: %s"), package);
 		::MessageBox(hwnd, info, TEXT("Info"), MB_ICONINFORMATION);
 		return TRUE;
 	}
-	info.Format(TEXT("Ğ¶ÔØ(%s)Ê§°Ü: %s"), package, para.strReturn);
+	info.Format(TEXT("Uninstall(%s) failed: %s"), package, para.strReturn);
 	::MessageBox(hwnd, info, TEXT("Error"), MB_ICONSTOP);
 	return FALSE;
 }
@@ -476,11 +477,11 @@ BOOL ForceStopPackage(HWND hwnd, CString package)
 	}
 	CString info;
 	if (para.strReturn.IsEmpty()) {
-		info.Format(TEXT("³É¹¦Í£Ö¹: %s"), package);
+		info.Format(TEXT("Force Stopped: %s"), package);
 		MessageBox(hwnd, info, TEXT("Info"), MB_ICONINFORMATION);
 		return TRUE;
 	}
-	info.Format(TEXT("Í£Ö¹(%s)Ê§°Ü: %s"), package, para.strReturn);
+	info.Format(TEXT("Failed to force-stop(%s): %s"), package, para.strReturn);
 	MessageBox(hwnd, info, TEXT("Error"), MB_ICONSTOP);
 	return FALSE;
 
@@ -502,7 +503,7 @@ void CDialogPackageManager::OnPackageoperationsForcestop()
 		return;
 	}
 	CString info;
-	info.Format(TEXT("È·ÈÏÍ£Ö¹:%s?"), apt.package);
+	info.Format(TEXT("Force Stop:%s?"), apt.package);
 	int nRet = MessageBox(info, TEXT("Warning"), MB_ICONQUESTION | MB_YESNOCANCEL);
 	if (nRet != IDYES) {
 		return;
@@ -522,7 +523,7 @@ void CDialogPackageManager::OnPackageoperationsUninstall()
 		return;
 	}
 	CString info;
-	info.Format(TEXT("È·ÈÏĞ¶ÔØ°ü:%s?"), apt.package);
+	info.Format(TEXT("Sure to uninstall:%s?"), apt.package);
 	int nRet = MessageBox(info, TEXT("Warning"), MB_ICONQUESTION | MB_YESNOCANCEL);
 	if (nRet != IDYES) {
 		return;
@@ -539,14 +540,14 @@ void CDialogPackageManager::OnNMRClickListPackages(NMHDR *pNMHDR, LRESULT *pResu
 		 return;
 	}
 	m_nCurrentSelectItem = pNMItemActivate->iItem;
-	CMenu menu; //¶¨ÒåÏÂÃæÒªÓÃµ½µÄcmenu¶ÔÏó
-	menu.LoadMenu(IDR_MENU_PACKAGE_OPERATIONS); //×°ÔØ×Ô¶¨ÒåµÄÓÒ¼ü²Ëµ¥ 
-	CMenu *pPopup = menu.GetSubMenu(0); //»ñÈ¡µÚÒ»¸öµ¯³ö²Ëµ¥£¬ËùÒÔµÚÒ»¸ö²Ëµ¥±ØĞëÓĞ×Ó²Ëµ¥
+	CMenu menu; //Â¶Â¨Ã’Ã¥ÃÃ‚ÃƒÃ¦Ã’ÂªÃ“ÃƒÂµÂ½ÂµÃ„cmenuÂ¶Ã”ÃÃ³
+	menu.LoadMenu(IDR_MENU_PACKAGE_OPERATIONS); //Ã—Â°Ã”Ã˜Ã—Ã”Â¶Â¨Ã’Ã¥ÂµÃ„Ã“Ã’Â¼Ã¼Â²Ã‹ÂµÂ¥ 
+	CMenu *pPopup = menu.GetSubMenu(0); //Â»Ã±ÃˆÂ¡ÂµÃšÃ’Â»Â¸Ã¶ÂµÂ¯Â³Ã¶Â²Ã‹ÂµÂ¥Â£Â¬Ã‹Ã¹Ã’Ã”ÂµÃšÃ’Â»Â¸Ã¶Â²Ã‹ÂµÂ¥Â±Ã˜ÃÃ«Ã“ÃÃ—Ã“Â²Ã‹ÂµÂ¥
 
-	CPoint point1;//¶¨ÒåÒ»¸öÓÃÓÚÈ·¶¨¹â±êÎ»ÖÃµÄÎ»ÖÃ 
-	GetCursorPos(&point1);//»ñÈ¡µ±Ç°¹â±êµÄÎ»ÖÃ£¬ÒÔ±ãÊ¹µÃ²Ëµ¥¿ÉÒÔ¸úËæ¹â±ê 
+	CPoint point1;//Â¶Â¨Ã’Ã¥Ã’Â»Â¸Ã¶Ã“ÃƒÃ“ÃšÃˆÂ·Â¶Â¨Â¹Ã¢Â±ÃªÃÂ»Ã–ÃƒÂµÃ„ÃÂ»Ã–Ãƒ 
+	GetCursorPos(&point1);//Â»Ã±ÃˆÂ¡ÂµÂ±Ã‡Â°Â¹Ã¢Â±ÃªÂµÃ„ÃÂ»Ã–ÃƒÂ£Â¬Ã’Ã”Â±Ã£ÃŠÂ¹ÂµÃƒÂ²Ã‹ÂµÂ¥Â¿Ã‰Ã’Ã”Â¸ÃºÃ‹Ã¦Â¹Ã¢Â±Ãª 
 
-	pPopup->TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point1.x,point1.y, this);//ÔÚÖ¸¶¨Î»ÖÃÏÔÊ¾µ¯³ö²Ëµ¥
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point1.x,point1.y, this);//Ã”ÃšÃ–Â¸Â¶Â¨ÃÂ»Ã–ÃƒÃÃ”ÃŠÂ¾ÂµÂ¯Â³Ã¶Â²Ã‹ÂµÂ¥
 
 
 	*pResult = 0;
@@ -569,7 +570,7 @@ BOOL CDialogPackageManager::PreTranslateMessage(MSG* pMsg)
 void CDialogPackageManager::OnLvnHotTrackListPackages(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“Â¿Ã˜Â¼Ã¾ÃÂ¨Ã–ÂªÂ´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
 	int nItem = pNMLV->iItem;
 
 	if (IsItemInvalid(nItem) || (nItem >= m_listPackages.GetItemCount())) {

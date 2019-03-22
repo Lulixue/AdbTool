@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "InterruptManager.h"
 
 
@@ -30,6 +30,27 @@ BOOL CInterruptManager::IsSystemInt(CString noColon) const
 	}
 	return FALSE;
 }
+
+BOOL StringIsDigits(const CString line)
+{
+    int length = line.GetLength();
+    if (length <= 0)
+    {
+        return FALSE;
+    }
+    WCHAR single;
+    for (int i = 0; i < length; i++)
+    {
+        single = line[i];
+        if ((single > L'9') ||
+            (single < L'0'))
+        {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
 
 void CInterruptManager::ParseIntLine(const CString intline)
 {
@@ -63,6 +84,8 @@ void CInterruptManager::ParseIntLine(const CString intline)
 		return;
 	}
 	//////////////////////////////////////////////////////////////////////////
+    // ----8.0 ----
+    //  1:          1          0          0          0          0          0  qpnp-int  usbin-uv
 	// ----6.0----
 	// 560:          0   mt-eint 176  pmic-eint
 	// IPI0:     11447       Rescheduling interrupts
@@ -81,32 +104,31 @@ void CInterruptManager::ParseIntLine(const CString intline)
 
 
 	CAndroidIntrrupt droidint;
-	BOOL bSystemInt = FALSE;
 	int order = DROID_INT_NO_COLON;
 	int index = 0;
 	CString title;
 
 	droidint.line = intline;
-	title = vecPieces[0];
-	title.Trim(TEXT(':'));
-	if (IsSystemInt(title)) {
-		bSystemInt = TRUE;
-		droidint.type = title;
-		droidint.no = -1;
-		droidint.system = TRUE;
-		droidint.name.Format(TEXT("[Sys]%s"), title);
-	} 
-	
-	if (vecPieces[0].Find(TEXT(":")) != -1) {
-		droidint.no = _wtoi(title);
-		index++;
-	}
-	order++;
-
 
 	length = vecPieces.size();
 	for (; index < length; index++) {
 		switch (order) {
+        case DROID_INT_NO_COLON:
+        {
+            title = vecPieces[0];
+            title.Replace(L":", L"");
+            if (IsSystemInt(title)) {
+                droidint.type = title;
+                droidint.system = TRUE;
+                droidint.name.Format(TEXT("[Sys-%s]"), title);
+            }
+            else
+            {
+                droidint.no = _wtoi(title);
+                droidint.name.Format(L"[%3d]", droidint.no);
+            }
+            break;
+        }
 		case DROID_INT_CPUS:
 			{
 				map<int, int>::const_iterator cit = m_mapCpuIndexes.begin();
@@ -118,14 +140,21 @@ void CInterruptManager::ParseIntLine(const CString intline)
 					droidint.cpu_triggered[cit->second] = _wtoi64(vecPieces[index]);
 				}
 				index = tmpIndex + m_mapCpuIndexes.size() - 1;
-				if (bSystemInt) {
+				if (droidint.system) {
 					order = DROID_INT_NAME;
 				}
 			}
 			break;
 		case DROID_INT_GPIO:
 			{
+                // NO INT GPIO
+                if (!StringIsDigits(vecPieces[index]))
+                {
+                    index--;
+                    break;
+                }
 				int tmp_no = _wtoi(vecPieces[index]);
+
 				/* 5.0 */
 				if (ADB.OsLower(ANDROID_LOLLIPOP_MR1)) {
 					if (tmp_no != droidint.no) 
@@ -147,7 +176,8 @@ void CInterruptManager::ParseIntLine(const CString intline)
 		order++;
 	}
 	droidint.name = ADB.CleanString(droidint.name);
-
+    TRACE(L"Line: %s\n", droidint.line);
+    TRACE(L"Name: %s, no: %d, type: %s, gpio: %d\n", droidint.name, droidint.no, droidint.type, droidint.gpio);
 
 	m_vecInterrupts.push_back(droidint);
 }
@@ -195,6 +225,7 @@ void CInterruptManager::Refresh()
 
 	para.bRet = CAdbInterface::CreateAdbProcess(&para);
 
+    TRACE(L"GetInterrupts: %s\n", para.strReturn);
 	m_vecInterrupts.clear();
 	m_mapCpuIndexes.clear();
 	int length = para.strReturn.GetLength();
@@ -250,7 +281,10 @@ BOOL CInterruptManager::GetIntNames(vector<CString> &vec) const
 	vector<CAndroidIntrrupt>::const_iterator cit = m_vecInterrupts.begin();
 	for (; cit != m_vecInterrupts.end(); cit++)
 	{
-		vec.push_back(cit->name);
+        if (!cit->name.IsEmpty())
+        {
+            vec.push_back(cit->name);
+        }
 	}
 	return TRUE;
 }

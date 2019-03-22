@@ -1,6 +1,7 @@
 # Debug/Release Execute Files
 Debug/AdbTool.*
 Release/*
+.vs/*
 
 # Debug/Release Build Files
 AdbTool/Debug/*

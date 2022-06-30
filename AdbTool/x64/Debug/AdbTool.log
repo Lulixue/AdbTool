@@ -1,0 +1,531 @@
+﻿  AdbFileManager.cpp
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(131,59): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [15]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(131,59): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(134,39): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char *”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(134,39): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(247,77): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [31]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(247,77): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(250,40): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char *”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(250,40): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(291,8): error C2664: “int ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Find(char,int) throw() const”: 无法将参数 1 从“const wchar_t [18]”转换为“char”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(291,21): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\cstringt.h(1753,6): message : 参见“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Find”的声明
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(294,61): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [10]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(294,61): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(297,45): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char *”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(297,45): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(414,41): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const char *”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbFileManager.cpp(414,39): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+  AdbInterface.cpp
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(253,42): warning C4311: “类型强制转换”: 从“HANDLE”到“int”的指针截断
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(273,44): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“const char *”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(273,42): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(315,52): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”转换为“const wchar_t *”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(315,43): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(316,51): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”转换为“const wchar_t *”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(316,43): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(662,37): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”转换为“const wchar_t *”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(662,28): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00BD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00B9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00B5”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00C0”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(926,21): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00BD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00F8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00B3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00CC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(957,21): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(1004,26): error C2664: “BOOL DeleteFileW(LPCWSTR)”: 无法将参数 1 从“CString”转换为“LPCWSTR”
+E:\git\AdbTool\AdbTool\AdbInterface.cpp(1004,15): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\fileapi.h(146,1): message : 参见“DeleteFileW”的声明
+  AdbProcessManager.cpp
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,25): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,40): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,29): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,44): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(177,21): error C2664: “__int64 _wtoi64(const wchar_t *)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(177,17): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(294,30): message : 参见“_wtoi64”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(301,75): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [32]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(301,75): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(304,36): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char *”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\AdbProcessManager.cpp(304,36): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+  AdbToolDlg.cpp
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,25): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,40): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,29): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,44): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(81,66): error C2660: “SetDlgItemTextW”: 函数不接受 2 个参数
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(5163,1): message : 参见“SetDlgItemTextW”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(82,66): error C2660: “SetDlgItemTextW”: 函数不接受 2 个参数
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(5163,1): message : 参见“SetDlgItemTextW”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00A2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00B2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00C9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00B8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00CD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00D6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00AA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,26): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,71): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(224,71): warning C4566: 由通用字符名称“\u00CE”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(360,5): error C2664: “int wsprintfA(LPSTR,LPCSTR,...)”: 无法将参数 1 从“wchar_t [250]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(360,14): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(326,1): message : 参见“wsprintfA”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(376,8): error C2039: "SetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(423,31): error C2664: “DWORD GetTempPathA(DWORD,LPSTR)”: 无法将参数 2 从“wchar_t [261]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(423,24): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\fileapi.h(1415,1): message : 参见“GetTempPathA”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(449,13): error C2039: "LoadMenuW": 不是 "CMenu" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(1135): message : 参见“CMenu”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(462,9): error C2664: “DWORD GetPrivateProfileStringA(LPCSTR,LPCSTR,LPCSTR,LPSTR,DWORD,LPCSTR)”: 无法将参数 4 从“WCHAR [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(463,3): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winbase.h(4645,1): message : 参见“GetPrivateProfileStringA”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(579,6): error C2664: “int _waccess(const wchar_t *,int)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(579,16): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wio.h(95,22): message : 参见“_waccess”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(753,44): error C2664: “int CWnd::GetDlgItemTextA(int,LPTSTR,int) const”: 无法将参数 2 从“WCHAR [251]”转换为“LPTSTR”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(753,32): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(2466,6): message : 参见“CWnd::GetDlgItemTextA”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(785,8): error C2039: "GetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(793,8): error C2039: "SetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(799,5): error C2664: “int _waccess(const wchar_t *,int)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(799,15): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wio.h(95,22): message : 参见“_waccess”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(802,9): error C2039: "SetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(812,9): error C2039: "SetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(829,8): error C2039: "SetWindowTextW": 不是 "CAdbToolDlg" 的成员
+E:\git\AdbTool\AdbTool\AdbToolDlg.h(12): message : 参见“CAdbToolDlg”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(838,37): warning C4311: “类型强制转换”: 从“LPVOID”到“int”的指针截断
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(848,62): warning C4312: “类型强制转换”: 从“int”转换到更大的“LPVOID”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(949,23): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(959,19): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(967,19): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(996,19): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1088,23): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1102,23): error C2039: "SetWindowTextW": 不是 "CStatic" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3431): message : 参见“CStatic”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1403,32): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1403,20): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00A3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00E6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00B3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00C9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00B9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1456,14): warning C4566: 由通用字符名称“\u00A6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1458,14): warning C4566: 由通用字符名称“\u00A3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1458,14): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1458,14): warning C4566: 由通用字符名称“\u00E6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1458,14): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\AdbToolDlg.cpp(1458,14): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+  AllKeyboardDlg.cpp
+E:\git\AdbTool\AdbTool\AllKeyboardDlg.cpp(362,24): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+E:\git\AdbTool\AdbTool\AllKeyboardDlg.cpp(374,24): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+  DialogDebug.cpp
+E:\git\AdbTool\AdbTool\DialogDebug.cpp(52,15): error C2039: "GetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\DialogDebug.cpp(60,15): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\DialogDebug.cpp(61,15): error C2039: "PostMessageW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\DialogDebug.cpp(72,47): error C2660: “wcscpy_s”: 函数不接受 2 个参数
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstring.h(39,30): message : 参见“wcscpy_s”的声明
+  DialogPackageManager.cpp
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(99,24): error C2039: "GetWindowTextW": 不是 "CDialogPackageManager" 的成员
+E:\git\AdbTool\AdbTool\DialogPackageManager.h(50): message : 参见“CDialogPackageManager”的声明
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(102,24): error C2039: "SetWindowTextW": 不是 "CDialogPackageManager" 的成员
+E:\git\AdbTool\AdbTool\DialogPackageManager.h(50): message : 参见“CDialogPackageManager”的声明
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(110,25): error C2039: "SetWindowTextW": 不是 "CDialogPackageManager" 的成员
+E:\git\AdbTool\AdbTool\DialogPackageManager.h(50): message : 参见“CDialogPackageManager”的声明
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,65): warning C4566: 由通用字符名称“\u00B2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,65): warning C4566: 由通用字符名称“\u00B3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,65): warning C4566: 由通用字符名称“\u00C9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,65): warning C4566: 由通用字符名称“\u00B9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,65): warning C4566: 由通用字符名称“\u00A6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,93): warning C4566: 由通用字符名称“\u00CF”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,93): warning C4566: 由通用字符名称“\u00FB”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(112,93): warning C4566: 由通用字符名称“\u00A2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(116,25): error C2039: "SetWindowTextW": 不是 "CDialogPackageManager" 的成员
+E:\git\AdbTool\AdbTool\DialogPackageManager.h(50): message : 参见“CDialogPackageManager”的声明
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00B2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00CF”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00B8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00D0”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00C5”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(119,15): warning C4566: 由通用字符名称“\u00A2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(122,63): warning C4566: 由通用字符名称“\u00B4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(122,63): warning C4566: 由通用字符名称“\u00CE”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(139,42): error C2664: “DWORD GetModuleFileNameA(HMODULE,LPSTR,DWORD)”: 无法将参数 2 从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(139,26): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\libloaderapi.h(226,1): message : 参见“GetModuleFileNameA”的声明
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(140,28): error C2440: “初始化”: 无法从“wchar_t [260]”转换为“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\DialogPackageManager.cpp(140,28): message : class“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”的构造函数声明为“explicit”
+          with
+          [
+              _CharType=char
+          ]
+  DialogPhoneInfo.cpp
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(96,18): error C2039: "SetWindowTextW": 不是 "CEdit" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3821): message : 参见“CEdit”的声明
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(109,73): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [30]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(109,73): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(110,93): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char [50]”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(110,93): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(113,39): error C2664: “std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)”: 无法将参数 1 从“const char *”转换为“std::initializer_list<_Elem>”
+          with
+          [
+              _Elem=wchar_t,
+              _Alloc=std::allocator<wchar_t>
+          ]
+          and
+          [
+              _Elem=wchar_t
+          ]
+E:\git\AdbTool\AdbTool\DialogPhoneInfo.cpp(113,39): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\xstring(2953,5): message : 参见“std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::basic_string”的声明
+  DialogProcessManager.cpp
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,25): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(108,40): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,29): error C2664: “long _wtol(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\AdbProcessManager.h(109,44): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(242,27): message : 参见“_wtol”的声明
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(272,52): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(272,47): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(272,28): error C2672: “std::make_pair”: 未找到匹配的重载函数
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(278,52): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(278,47): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(278,28): error C2672: “std::make_pair”: 未找到匹配的重载函数
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(284,52): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(284,47): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(284,28): error C2672: “std::make_pair”: 未找到匹配的重载函数
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(290,53): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“const CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(290,47): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(290,28): error C2672: “std::make_pair”: 未找到匹配的重载函数
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00BD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00F8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00B3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00CC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00D2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00D1”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00BB”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00C9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00B9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00A6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00CB”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(475,15): warning C4566: 由通用字符名称“\u00C0”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00B3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00A2”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00CA”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00D4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00C9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00CB”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00C0”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00BD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00F8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00CC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(479,15): warning C4566: 由通用字符名称“\u00DC”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00C8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00CF”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00CD”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00A3”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00D6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(632,14): warning C4566: 由通用字符名称“\u00B9”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00C8”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00CF”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00D0”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00B6”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00D4”表示的字符不能在当前代码页(936)中表示出来
+E:\git\AdbTool\AdbTool\DialogProcessManager.cpp(662,14): warning C4566: 由通用字符名称“\u00D8”表示的字符不能在当前代码页(936)中表示出来
+  DialogSelectDevice.cpp
+  DlgFileManager.cpp
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(104,28): error C2039: "LoadIconW": 不是 "CWinApp" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(5135): message : 参见“CWinApp”的声明
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(410,16): error C2039: "PostMessageW": 不是 "CDlgFileManager" 的成员
+E:\git\AdbTool\AdbTool\DlgFileManager.h(30): message : 参见“CDlgFileManager”的声明
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(552,36): error C2660: “PostMessageW”: 函数不接受 1 个参数
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(4032,1): message : 参见“PostMessageW”的声明
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(610,36): error C2440: “=”: 无法从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(610,28): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(624,34): error C2664: “BOOL SHGetPathFromIDListA(LPCITEMIDLIST,LPSTR)”: 无法将参数 2 从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(624,26): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\shlobj_core.h(757,17): message : 参见“SHGetPathFromIDListA”的声明
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(635,28): error C2440: “=”: 无法从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(635,18): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(830,19): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+E:\git\AdbTool\AdbTool\DlgFileManager.cpp(938,8): error C2039: "PostMessageW": 不是 "CDlgFileManager" 的成员
+E:\git\AdbTool\AdbTool\DlgFileManager.h(30): message : 参见“CDlgFileManager”的声明
+  InputLogDlg.cpp
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(100,19): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(120,21): error C2039: "SetWindowTextW": 不是 "CEdit" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3821): message : 参见“CEdit”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(139,14): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(155,31): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”转换为“const wchar_t *”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(155,28): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(166,16): error C2039: "SetWindowTextW": 不是 "CEdit" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3821): message : 参见“CEdit”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(173,15): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(304,20): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(327,22): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\InputLogDlg.cpp(353,21): error C2039: "GetWindowTextW": 不是 "CEdit" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3821): message : 参见“CEdit”的声明
+  InterruptManager.cpp
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(119,36): error C2664: “int ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Replace(char,char)”: 无法将参数 1 从“const wchar_t [2]”转换为“char”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(119,27): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\cstringt.h(1562,6): message : 参见“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Replace”的声明
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(127,42): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(127,37): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(128,59): error C2664: “void ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Format(const char *,...)”: 无法将参数 1 从“const wchar_t [6]”转换为“const char *”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(128,38): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\cstringt.h(2186,15): message : 参见“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>::Format”的声明
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(140,68): error C2664: “__int64 _wtoi64(const wchar_t *)”: 无法将参数 1 从“_Ty”转换为“const wchar_t *”
+          with
+          [
+              _Ty=CString
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(140,67): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(294,30): message : 参见“_wtoi64”的声明
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(156,40): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“_Ty”转换为“const wchar_t *”
+          with
+          [
+              _Ty=CString
+          ]
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(156,39): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(214,40): error C2664: “int _wtoi(const wchar_t *)”: 无法将参数 1 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\InterruptManager.cpp(214,33): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdlib.h(231,26): message : 参见“_wtoi”的声明
+  StartActivityDlg.cpp
+E:\git\AdbTool\AdbTool\StartActivityDlg.cpp(39,24): error C2039: "GetWindowTextW": 不是 "CComboBox" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3718): message : 参见“CComboBox”的声明
+  WifiDlg.cpp
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(48,16): error C2039: "SetWindowTextW": 不是 "CEdit" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxwin.h(3821): message : 参见“CEdit”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(93,17): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(135,11): error C2039: "SetWindowTextW": 不是 "CIPAddressCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2372): message : 参见“CIPAddressCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(142,16): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(150,16): error C2039: "GetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(155,16): error C2039: "SetWindowTextW": 不是 "CRichEditCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2239): message : 参见“CRichEditCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(169,16): error C2039: "GetWindowTextW": 不是 "CIPAddressCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2372): message : 参见“CIPAddressCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(271,18): error C2039: "GetWindowTextW": 不是 "CIPAddressCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2372): message : 参见“CIPAddressCtrl”的声明
+E:\git\AdbTool\AdbTool\WifiDlg.cpp(293,11): error C2039: "SetWindowTextW": 不是 "CIPAddressCtrl" 的成员
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\atlmfc\include\afxcmn.h(2372): message : 参见“CIPAddressCtrl”的声明
+  ProcInterface.cpp
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(12,32): error C2664: “DWORD GetTempPathA(DWORD,LPSTR)”: 无法将参数 2 从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(12,26): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\fileapi.h(1415,1): message : 参见“GetTempPathA”的声明
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(22,44): error C2664: “DWORD GetModuleFileNameA(HMODULE,LPSTR,DWORD)”: 无法将参数 2 从“wchar_t [260]”转换为“LPSTR”
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(22,28): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\libloaderapi.h(226,1): message : 参见“GetModuleFileNameA”的声明
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(24,26): error C2440: “初始化”: 无法从“wchar_t [260]”转换为“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(24,26): message : class“ATL::CStringT<char,StrTraitMFC<char,ATL::ChTraitsCRT<_CharType>>>”的构造函数声明为“explicit”
+          with
+          [
+              _CharType=char
+          ]
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(198,40): error C2664: “errno_t _wfopen_s(FILE **,const wchar_t *,const wchar_t *)”: 无法将参数 2 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(198,20): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h(139,30): message : 参见“_wfopen_s”的声明
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(271,41): error C2664: “errno_t _wfopen_s(FILE **,const wchar_t *,const wchar_t *)”: 无法将参数 2 从“CString”转换为“const wchar_t *”
+E:\git\AdbTool\AdbTool\ProcInterface.cpp(271,20): message : 没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h(139,30): message : 参见“_wfopen_s”的声明
+  stdafx.cpp
+  正在生成代码...

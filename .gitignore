@@ -5,6 +5,7 @@ Release/*
 
 # Debug/Release Build Files
 AdbTool/Debug/*
+AdbTool/X64/*
 AdbTool/Release/*
 ipch/*
 

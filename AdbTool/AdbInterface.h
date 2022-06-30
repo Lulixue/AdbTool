@@ -43,6 +43,12 @@ typedef struct
 }PARAM_T, *P_PARAM_T;
 
 enum AndroidVersion{
+	ANDROID_T = 33,
+	ANDROID_S_V2 = 32,
+	ANDROID_S = 31,
+	ANDROID_R = 30,
+	ANDROID_Q = 29,
+	ANDROID_P = 28,
 	ANDROID_O_MR1 = 27,
 	ANDROID_O = 26,
 	ANDROID_N_MR1 = 25,

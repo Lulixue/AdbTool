@@ -19,6 +19,7 @@ enum ANDROID_INT_ORDER {
 	DROID_INT_TYPE,
 	DROID_INT_GPIO,
 	DROID_INT_NAME,
+	DROID_INT_DTS_NAME
 };
 
 class CAndroidIntrrupt 
@@ -35,6 +36,8 @@ public:
 	CString type;
 	CString line;
 	BOOL system;
+	CString controller;
+	CString dtsName;
 
 public:
 	BOOL IsSysInt() const {return system;}
@@ -57,6 +60,7 @@ private:
 	void ParseIntLine(const CString intline);
 
 private:
+	vector<int> m_vecIntTypes{ DROID_INT_NO_COLON, DROID_INT_CPUS };
 	vector<CAndroidIntrrupt> m_vecInterrupts;
 	map<int, int> m_mapCpuIndexes;
 };

@@ -102,6 +102,7 @@ struct ADB_DEVICE
 	CString model;
 	CString product;
 	CString device;
+	CString transport_id;
 
 	BOOL IsValidDevice() const;
 
@@ -111,6 +112,7 @@ struct ADB_DEVICE
 		model = TEXT("");
 		device = TEXT("");
 		product = TEXT("");
+		transport_id = L"";
 	}
 
 };
@@ -225,5 +227,5 @@ public:
 	vector<INPUT_EVENT_DEV_T> m_vecInputDevices;
 
 };
-
+void splitString(CString str, vector<CString>& result);
 extern CAdbInterface ADB;

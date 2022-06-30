@@ -59,10 +59,12 @@ CString CProcInterface::GetAvailableI2CInterface()
 			{
 				continue;
 			}
+			para.strReturn = para.strReturn.Trim();
 			para.strReturn.Replace(TEXT('\r'), TEXT('\n'));
-			int pos = para.strReturn.Find(TEXT('\n'));
+			para.strReturn.Replace(L"\n\n", L"\n");
+			para.strReturn.Replace(L"\n", L",");
 
-			strBuses.AppendFormat(TEXT("i2c-%d: %s\n"), i, para.strReturn.Mid(0, pos));
+			strBuses.AppendFormat(TEXT("i2c-%d: %s\n"), i, para.strReturn.GetString());
 				
 		}
 	}

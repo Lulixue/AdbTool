@@ -6,7 +6,7 @@ using namespace std;
 
 
 static std::wregex NONE_EMPTY_REGEX(TEXT("(\\S+)"));
-void splitString(CString str, CString separator, vector<CString>& result) {
+void splitString(CString str, vector<CString>& result) {
 	 
 	std::wstring wstr(str.GetString());
 	wsmatch match; 
@@ -17,7 +17,21 @@ void splitString(CString str, CString separator, vector<CString>& result) {
 		result.push_back(CString(match.str(1).c_str()));
 		searchStart = match.suffix().first;
 	}
- }
+}
+
+void getLineParts(CString str, map<CString, vector<CString>>& result) {
+	str.Replace(L"\r", L"\n");
+	str.Replace(L"\n\n", L"\n");
+	
+	int index = 0;
+	CString token = str.Tokenize(L"\n", index);
+	while (!token.IsEmpty()) {
+		vector<CString> parts;
+		splitString(token, parts);
+		result[token] = parts;
+		token = str.Tokenize(L"\n", index);
+	}
+}
 
 CInterruptManager::CInterruptManager(void)
 {
@@ -83,7 +97,7 @@ void CInterruptManager::ParseIntLine(const CString intline)
 { 
 	vector<CString> vecPieces;
 
-	splitString(intline, TEXT(" "), vecPieces);
+	splitString(intline,  vecPieces);
 	 
 	if (vecPieces.empty()) {
 		return;
@@ -206,7 +220,7 @@ void CInterruptManager::ParseTitleLine(CString title)
 	vector<CString> vecPieces;
 	int j = 0;
 	vector<CString> result;
-	splitString(title, TEXT(" "), result);
+	splitString(title, result);
 
 	for_each(result.begin(), result.end(), [this,&j](CString val) {
 		TCHAR buffer[5] = { 0 };

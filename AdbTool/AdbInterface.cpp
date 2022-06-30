@@ -295,28 +295,25 @@ BOOL CAdbInterface::SetPrintkLevel(int level)
 BOOL CAdbInterface::GetResolution(CPoint &resolution)
 {
 	PARAM_T para;
-	para.strCmd = TEXT("adb shell dumpsys window displays");
+	para.strCmd = TEXT("adb shell wm size");
 	para.nType = CMD_WAIT | CMD_READ_BYTES_COUNT;
 	para.nWaitMs = 3000;
 	para.nReadBytesCount = 256;
 	para.bRet = CAdbInterface::CreateAdbProcess(&para);
 
-	int nPos = para.strReturn.Find(TEXT("cur="));
-	if (nPos != -1)
+	vector<CString> parts;
+	splitString(para.strReturn.Trim(), parts); 
+
+	for (auto &part : parts) 
 	{
-		nPos += 4;
-		int nEndPos = para.strReturn.Find(TEXT(" "), nPos);
-		if (nEndPos != -1)
+		auto& strResolution = part.Trim().MakeLower();
+		int nPos = strResolution.Find(TEXT("x"));
+		if (nPos != -1)
 		{
-			CString strResolution = para.strReturn.Mid(nPos, nEndPos - nPos);
-			nPos = strResolution.Find(TEXT("x"));
-			if (nPos != -1)
-			{
-				resolution.x = _wtoi(strResolution.Mid(0, nPos));
-				resolution.y = _wtoi(strResolution.Mid(nPos+1));
-				return TRUE;
-			}
-		}
+			resolution.x = _wtoi(strResolution.Mid(0, nPos));
+			resolution.y = _wtoi(strResolution.Mid(nPos+1));
+			return TRUE;
+		} 
 	}
 	return FALSE;
 }
@@ -452,6 +449,7 @@ BOOL CAdbInterface::SelectDevice(ADB_DEVICE &dev)
 	return TRUE;
 }
 
+void getLineParts(CString str, map<CString, vector<CString>>& result);
 BOOL CAdbInterface::GetDevices()
 {
 	m_curDevice.Reset();
@@ -469,6 +467,7 @@ BOOL CAdbInterface::GetDevices()
 	 */
 
 	if (para.strReturn.Find(TEXT("protocol fault")) != -1) {
+		m_bDevConnected = FALSE;
 		return FALSE;
 	}
 	/* 
@@ -479,72 +478,31 @@ BOOL CAdbInterface::GetDevices()
 	int nPos = para.strReturn.Find(TEXT("attached"));
 
 	CString strDevices = para.strReturn.Mid(nPos + 8);
-	int len = strDevices.GetLength();
+	map<CString, vector<CString>> devices;
 
-	WCHAR single;
-	CString strSingle;
-	int type = GD_SERIALNO;
-	ADB_DEVICE adbdev;
-
-	for (int i = 0; i < len; i++) 
-	{
-		single = strDevices.GetAt(i);
-		if (!IsWhitespace(single)) 
-		{
-			strSingle.AppendChar(single);
-		}
-
-		if (IsWhitespace(single)) {
-			if (!strSingle.IsEmpty())
-			{
-				
-				switch (type) {
-				case GD_SERIALNO:
-					if (!adbdev.serial_no.IsEmpty()) {
-						m_vecAdbDevices.push_back(adbdev);
-						adbdev.Reset();
-					}
-					adbdev.serial_no = strSingle;
-					break;
-
-				case GD_CONN_STATE:
-					adbdev.state = strSingle;
-					break;
-
-				case GD_PRODUCT:
-					nPos = strSingle.Find(TEXT("product:"));
-					adbdev.product = strSingle.Mid(nPos+8);
-					break;
-
-				case GD_MODEL:
-					nPos = strSingle.Find(TEXT("model:"));
-					adbdev.model = strSingle.Mid(nPos+6);
-					break;
-
-				case GD_DEVICE:
-					nPos = strSingle.Find(TEXT("device:"));
-					adbdev.device = strSingle.Mid(nPos+7);
-
-					m_vecAdbDevices.push_back(adbdev);
-					adbdev.Reset();
-					break;
-				default:
-					break;
-
-				}
-				type++;
-				if (type > GD_DEVICE) {
-					type = GD_SERIALNO;
-				}
-				strSingle.Empty();
+	getLineParts(strDevices.Trim(), devices);
+	  
+	for (const auto& kv : devices) {
+		ADB_DEVICE adbdev;
+		adbdev.serial_no = kv.second[0];
+		adbdev.state = kv.second[1];
+		for (int i = 2; i < kv.second.size(); i++) {
+			auto& part = kv.second[i];
+			if (part.Find(L"product:") != -1) {
+				adbdev.product = part.Mid(8);
+			}
+			else if (part.Find(L"model:") != -1) {
+				adbdev.model = part.Mid(6);
+			}
+			else if (part.Find(L"device:") != -1) { 
+				adbdev.device = part.Mid(7);
+			} 
+			else if (part.Find(L"transport_id:") == 0) {
+				adbdev.transport_id = part.Mid(13);
 			}
 		}
-	}
-	if (!adbdev.serial_no.IsEmpty()) {
 		m_vecAdbDevices.push_back(adbdev);
-		adbdev.Reset();
-	}
-
+	}  
 
 	if (m_vecAdbDevices.size() > 0)
 	{

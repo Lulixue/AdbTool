@@ -318,7 +318,7 @@ void CAdbToolDlg::SetCompileDateTime()
     char szTmpTime[100]={0}; 
     char szMonth[10]={0}; 
     wchar_t szDateTime[250] = {0};
-    int iYear, iMonth, iDay;
+    int iYear, iMonth = 1, iDay;
     int iHour,iMin,iSec;
 
     //»ñÈ¡±àÒëÈÕÆÚ¡¢Ê±¼ä 
@@ -1213,19 +1213,24 @@ void CAdbToolDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	CDialogEx::OnGetMinMaxInfo(lpMMI);
 }
 
+void ThreadGetIICProc(LPVOID lP) {
+
+	BOOL bShowWindow = *((BOOL *)lP);
+	BOOL bRet = IPROC.OpenProc();
+
+	if (bShowWindow) { 
+		CString strInfo;
+		strInfo += IPROC.GetAvailableI2CInterface();
+		g_pToolDlg->MessageBox( strInfo);
+	}
+	g_pToolDlg->GetDlgItem(IDC_BTN_IIC_OPERATOR)->EnableWindow(TRUE);
+}
+
 LRESULT CAdbToolDlg::OnProcAvailable(WPARAM wParam, LPARAM lParam)
 {
 	BOOL bShowWindow = ((int)wParam) == 0;
-	BOOL bRet = IPROC.OpenProc();
-
-	if (bShowWindow) {
-		
-			CString strInfo;
-			strInfo += IPROC.GetAvailableI2CInterface();
-			MessageBox(strInfo);
-	}
+	_beginthread(ThreadGetIICProc, 0, &bShowWindow);
 	
-	GetDlgItem(IDC_BTN_IIC_OPERATOR)->EnableWindow(TRUE);
 	return 0;
 }
 
